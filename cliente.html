@@ -52,11 +52,24 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   <div class="loader"></div>
   <p style="color:var(--muted);font-size:14px">Cargando…</p>
 </div>
-<script>
-const DB={
-  getClients:()=>JSON.parse(localStorage.getItem('ls_clients')||'[]')
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCdXUX2_ydiPcj51ciV9YrSczAcs6m2F30",
+  authDomain: "loyalspin03.firebaseapp.com",
+  projectId: "loyalspin03",
+  storageBucket: "loyalspin03.firebasestorage.app",
+  messagingSenderId: "480148425420",
+  appId: "1:480148425420:web:f0f8c0e749fdc0da8e1069"
 };
-function initials(n){return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function initials(n){ return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
 function getTier(p){
   if(p>=2000)return{name:'Platino',cls:'t-platinum',e:'💎'};
   if(p>=1000)return{name:'Oro',cls:'t-gold',e:'🥇'};
@@ -73,38 +86,55 @@ function stars(p){
   const n=p>=2000?5:p>=1000?4:p>=500?3:p>=200?2:1;
   return Array.from({length:5},(_,i)=>`<span class="star">${i<n?'⭐':'☆'}</span>`).join('');
 }
-function load(){
-  const id=new URLSearchParams(window.location.search).get('id');
-  const card=document.getElementById('card');
-  if(!id){card.innerHTML='<div class="err-icon">❓</div><div class="err-title">Sin ID</div><div class="err-msg">Escanea el QR correcto.</div>';return;}
-  const c=DB.getClients().find(x=>x.id===id.toUpperCase());
-  if(!c){card.innerHTML=`<div class="err-icon">❓</div><div class="err-title">No encontrado</div><div class="err-msg">ID "${id}" no existe. Consulta con el negocio.</div>`;return;}
-  const p=c.points||0,tier=getTier(p),next=getNext(p),prog=next?Math.min((p/next.next)*100,100):100;
-  card.innerHTML=`
-    <div class="brand">Loyal<span>Spin</span> · mis puntos</div>
-    <div class="avatar">${initials(c.name)}</div>
-    <div class="name">${c.name}</div>
-    <div class="cid">ID: ${c.id}${c.phone?' · '+c.phone:''}</div>
-    <div class="pts-box">
-      <div class="pts-lbl">Puntos acumulados</div>
-      <div class="pts-num" id="cnt">0</div>
-      <div class="pts-word">puntos</div>
-      <div class="stars">${stars(p)}</div>
-      <span class="tier ${tier.cls}">${tier.e} Nivel ${tier.name}</span>
-      ${next?`<div class="prog-row"><span>${p.toLocaleString()} pts</span><span>${next.next.toLocaleString()} → ${next.label}</span></div><div class="prog-bar"><div class="prog-fill" id="pf"></div></div>`:'<div style="margin-top:10px;font-size:12px;color:var(--accent)">🏆 Nivel máximo</div>'}
-    </div>
-    <div class="footer">Vista de solo lectura · Consulta con el negocio para más información</div>
-  `;
-  // Animate
-  const dur=1200,start=performance.now();
-  (function tick(now){
-    const t=Math.min((now-start)/dur,1),e=1-Math.pow(1-t,3);
-    document.getElementById('cnt').textContent=Math.floor(e*p).toLocaleString();
-    if(t<1)requestAnimationFrame(tick);
-    else document.getElementById('cnt').textContent=p.toLocaleString();
-  })(performance.now());
-  setTimeout(()=>{const pf=document.getElementById('pf');if(pf)pf.style.width=prog+'%';},300);
+
+async function load() {
+  const id = new URLSearchParams(window.location.search).get('id');
+  const card = document.getElementById('card');
+
+  if (!id) {
+    card.innerHTML='<div class="err-icon">❓</div><div class="err-title">Sin ID</div><div class="err-msg">Escanea el QR correcto.</div>';
+    return;
+  }
+
+  try {
+    const snap = await getDoc(doc(db,'clients',id.toUpperCase()));
+    if (!snap.exists()) {
+      card.innerHTML=`<div class="err-icon">❓</div><div class="err-title">No encontrado</div><div class="err-msg">ID "${id}" no existe. Consulta con el negocio.</div>`;
+      return;
+    }
+    const c = snap.data();
+    const p = c.points||0, tier=getTier(p), next=getNext(p), prog=next?Math.min((p/next.next)*100,100):100;
+
+    card.innerHTML=`
+      <div class="brand">Loyal<span>Spin</span> · mis puntos</div>
+      <div class="avatar">${initials(c.name)}</div>
+      <div class="name">${c.name}</div>
+      <div class="cid">ID: ${snap.id}${c.phone?' · '+c.phone:''}</div>
+      <div class="pts-box">
+        <div class="pts-lbl">Puntos acumulados</div>
+        <div class="pts-num" id="cnt">0</div>
+        <div class="pts-word">puntos</div>
+        <div class="stars">${stars(p)}</div>
+        <span class="tier ${tier.cls}">${tier.e} Nivel ${tier.name}</span>
+        ${next?`<div class="prog-row"><span>${p.toLocaleString()} pts</span><span>${next.next.toLocaleString()} → ${next.label}</span></div><div class="prog-bar"><div class="prog-fill" id="pf"></div></div>`:'<div style="margin-top:10px;font-size:12px;color:var(--accent)">🏆 Nivel máximo</div>'}
+      </div>
+      <div class="footer">Vista de solo lectura · Consulta con el negocio para más información</div>
+    `;
+
+    const dur=1200, start=performance.now();
+    (function tick(now){
+      const t=Math.min((now-start)/dur,1), e=1-Math.pow(1-t,3);
+      document.getElementById('cnt').textContent=Math.floor(e*p).toLocaleString();
+      if(t<1)requestAnimationFrame(tick);
+      else document.getElementById('cnt').textContent=p.toLocaleString();
+    })(performance.now());
+    setTimeout(()=>{ const pf=document.getElementById('pf'); if(pf)pf.style.width=prog+'%'; },300);
+
+  } catch(e) {
+    card.innerHTML='<div class="err-icon">⚠️</div><div class="err-title">Error de conexión</div><div class="err-msg">No se pudo conectar. Revisa tu internet e intenta de nuevo.</div>';
+  }
 }
+
 load();
 </script>
 </body>

@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LoyalSpin — Panel Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-
 <style>
 :root {
   --bg:#0a0a0f; --surface:#111118; --surface2:#1a1a26; --border:#2a2a3a;
@@ -15,7 +14,6 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
 
-/* LOGIN */
 #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 30% 40%,#1a1430 0%,#0a0a0f 60%)}
 .login-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:52px 48px;width:420px;box-shadow:0 40px 80px rgba(0,0,0,.6)}
 .login-logo{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:8px}
@@ -29,7 +27,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
 .login-error{color:var(--danger);font-size:13px;margin-top:12px;text-align:center;display:none}
 
-/* LAYOUT */
 #adminPanel{display:none;min-height:100vh}
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:28px 0;z-index:100}
 .sidebar-logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;padding:0 24px 28px;border-bottom:1px solid var(--border)}
@@ -48,7 +45,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .page-header h1{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;letter-spacing:-.5px}
 .page-header p{color:var(--muted);font-size:15px;margin-top:6px}
 
-/* CARDS */
 .client-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,transform .15s}
 .client-card:hover{border-color:var(--accent);transform:translateY(-2px)}
 .client-avatar{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7a4e2d);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;flex-shrink:0}
@@ -58,18 +54,15 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .client-points{text-align:right;font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--accent)}
 .client-points span{display:block;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:400;color:var(--muted)}
 
-/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px}
 .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px}
 .stat-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px}
 .stat-val{font-family:'Syne',sans-serif;font-size:32px;font-weight:800;color:var(--accent)}
 
-/* SEARCH */
 .search-bar{display:flex;gap:12px;margin-bottom:24px}
 .search-bar input{flex:1;padding:13px 18px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
 .search-bar input:focus{border-color:var(--accent)}
 
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;z-index:1000;opacity:0;pointer-events:none;transition:opacity .25s;backdrop-filter:blur(4px)}
 .modal-overlay.open{opacity:1;pointer-events:all}
 .modal{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:40px;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform .25s;position:relative}
@@ -78,7 +71,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .modal-close:hover{background:var(--danger);color:#fff}
 .modal h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:20px}
 
-/* ADD FORM */
 .add-form{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .form-group{margin-bottom:20px}
@@ -86,13 +78,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .form-group input{width:100%;padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
 .form-group input:focus{border-color:var(--accent)}
 
-/* QR TOKENS */
 .token-list{margin-top:20px}
 .token-row{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;align-items:center;gap:14px;margin-bottom:8px}
 .token-status{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .token-status.active{background:var(--success)}
 .token-status.used{background:var(--muted)}
-.token-status.expired{background:var(--danger)}
 .token-info{flex:1}
 .token-code{font-size:13px;font-family:'Syne',sans-serif;font-weight:700;color:var(--text)}
 .token-meta{font-size:12px;color:var(--muted);margin-top:2px}
@@ -100,7 +90,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .token-badge.active{background:rgba(92,224,160,.1);color:var(--success);border:1px solid rgba(92,224,160,.25)}
 .token-badge.used{background:rgba(122,120,144,.1);color:var(--muted);border:1px solid rgba(122,120,144,.25)}
 
-/* BUTTONS */
 .btn-accent{padding:10px 22px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1a1400;font-weight:700;font-size:13px;font-family:'Syne',sans-serif;cursor:pointer;transition:opacity .2s}
 .btn-accent:hover{opacity:.88}
 .btn-sm{padding:8px 16px;border-radius:8px;border:none;font-size:13px;font-weight:600;font-family:'Syne',sans-serif;cursor:pointer;transition:all .18s}
@@ -111,46 +100,37 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .btn-sm.muted{background:rgba(122,120,144,.1);color:var(--muted)}
 .btn-sm.muted:hover{background:rgba(122,120,144,.2)}
 
-/* QR DISPLAY */
 .qr-box{background:var(--surface2);border:1px solid var(--border);border-radius:16px;padding:28px;text-align:center}
-.qr-box canvas,.qr-box img{border-radius:8px;margin:0 auto 16px;display:block}
 .qr-url{font-size:11px;color:var(--muted);word-break:break-all;padding:8px 12px;background:var(--bg);border-radius:8px;font-family:monospace}
 
-/* MODAL INFO */
 .modal-info-row{display:flex;gap:28px;margin-bottom:22px;flex-wrap:wrap}
 .modal-info-item label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:4px}
 .modal-info-item span{font-family:'Syne',sans-serif;font-size:18px;font-weight:700}
 .modal-info-item.pts span{color:var(--accent);font-size:26px}
 
-/* HISTORY TABLE */
 .history-table{width:100%;border-collapse:collapse}
 .history-table th{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border)}
 .history-table td{padding:12px 14px;border-bottom:1px solid rgba(42,42,58,.5);font-size:13px}
 .badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:600}
 .badge-pts{background:rgba(200,169,110,.12);color:var(--accent)}
-.badge-used{background:rgba(122,120,144,.1);color:var(--muted)}
 
-/* TABS */
 .tab-row{display:flex;gap:8px;margin-bottom:20px}
 .tab{padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted);font-size:13px;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .18s}
 .tab.active{background:rgba(200,169,110,.12);color:var(--accent);border-color:rgba(200,169,110,.3)}
 
-/* TOAST */
 #toast{position:fixed;bottom:28px;right:28px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px 20px;font-size:14px;z-index:9999;transform:translateY(100px);opacity:0;transition:all .3s;box-shadow:0 8px 24px rgba(0,0,0,.4)}
 #toast.show{transform:translateY(0);opacity:1}
 #toast.success{border-color:var(--success);color:var(--success)}
 #toast.error{border-color:var(--danger);color:var(--danger)}
 
-.divider{height:1px;background:var(--border);margin:20px 0}
 .empty-state{text-align:center;padding:48px 20px;color:var(--muted)}
 .empty-icon{font-size:40px;margin-bottom:12px}
-.points-inline{display:flex;gap:10px;align-items:center;margin-top:10px}
-.points-inline input{flex:1;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;outline:none}
+
+.fb-loading{text-align:center;padding:40px;color:var(--muted);font-size:14px}
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
     <div class="login-logo">Loyal<span>Spin</span></div>
@@ -162,7 +142,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
 </div>
 
-<!-- ADMIN PANEL -->
 <div id="adminPanel">
   <aside class="sidebar">
     <div class="sidebar-logo">Loyal<span>Spin</span></div>
@@ -178,15 +157,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </aside>
 
   <main class="main">
-
-    <!-- DASHBOARD -->
     <section class="page active" id="page-dashboard">
       <div class="page-header"><h1>Dashboard</h1><p>Busca un cliente para generar su QR de giro</p></div>
       <div class="stats-grid">
-        <div class="stat-card"><div class="stat-label">Clientes</div><div class="stat-val" id="statClients">0</div></div>
-        <div class="stat-card"><div class="stat-label">Puntos entregados</div><div class="stat-val" id="statPoints">0</div></div>
-        <div class="stat-card"><div class="stat-label">QR activos</div><div class="stat-val" id="statActiveQR">0</div></div>
-        <div class="stat-card"><div class="stat-label">Giros totales</div><div class="stat-val" id="statSpins">0</div></div>
+        <div class="stat-card"><div class="stat-label">Clientes</div><div class="stat-val" id="statClients">—</div></div>
+        <div class="stat-card"><div class="stat-label">Puntos entregados</div><div class="stat-val" id="statPoints">—</div></div>
+        <div class="stat-card"><div class="stat-label">QR activos</div><div class="stat-val" id="statActiveQR">—</div></div>
+        <div class="stat-card"><div class="stat-label">Giros totales</div><div class="stat-val" id="statSpins">—</div></div>
       </div>
       <div class="search-bar">
         <input type="text" id="quickSearch" placeholder="Buscar cliente por ID o nombre..." oninput="quickSearchFn()">
@@ -194,7 +171,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div id="quickResults"></div>
     </section>
 
-    <!-- CLIENTS -->
     <section class="page" id="page-clients">
       <div class="page-header"><h1>Clientes</h1><p>Listado completo</p></div>
       <div class="search-bar">
@@ -203,7 +179,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div id="clientsList"></div>
     </section>
 
-    <!-- ADD CLIENT -->
     <section class="page" id="page-add">
       <div class="page-header"><h1>Nuevo cliente</h1><p>Registra un cliente en el sistema</p></div>
       <div class="add-form">
@@ -219,19 +194,13 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       </div>
     </section>
 
-    <!-- HISTORY -->
     <section class="page" id="page-history">
       <div class="page-header"><h1>Historial</h1><p>Todos los movimientos de puntos</p></div>
-      <table class="history-table">
-        <thead><tr><th>Fecha / Hora</th><th>Cliente</th><th>ID</th><th>Puntos</th><th>Tipo</th></tr></thead>
-        <tbody id="historyBody"></tbody>
-      </table>
+      <div id="historyContainer"><div class="fb-loading">Cargando historial…</div></div>
     </section>
-
   </main>
 </div>
 
-<!-- CLIENT MODAL -->
 <div class="modal-overlay" id="clientModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('clientModal')">✕</button>
@@ -239,7 +208,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
 </div>
 
-<!-- QR MODAL -->
 <div class="modal-overlay" id="qrModal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('qrModal')">✕</button>
@@ -255,249 +223,185 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div id="toast"></div>
 
-<script>
-/* ══ CONFIG ══ */
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'loyalspin2024';
-const BASE_SPIN_URL = window.location.origin + '/girar.html';
+<!-- Firebase -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getFirestore, collection, doc, getDoc, getDocs, setDoc, updateDoc,
+  addDoc, deleteDoc, query, orderBy, limit, where, increment, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const PRIZES = [
-  {pts:50,  color:'#ff6b6b'},
-  {pts:100, color:'#ff8e53'},
-  {pts:200, color:'#ffd700'},
-  {pts:100, color:'#51cf66'},
-  {pts:500, color:'#339af0'},
-  {pts:50,  color:'#cc5de8'},
-  {pts:1000,color:'#ff6b6b'},
-  {pts:200, color:'#ff8e53'},
-];
-
-/* ══ DATA LAYER ══ */
-const DB = {
-  getClients:()=> JSON.parse(localStorage.getItem('ls_clients')||'[]'),
-  saveClients:(a)=> localStorage.setItem('ls_clients', JSON.stringify(a)),
-  getHistory:()=> JSON.parse(localStorage.getItem('ls_history')||'[]'),
-  addHistory:(e)=>{ const h=DB.getHistory(); h.unshift(e); localStorage.setItem('ls_history',JSON.stringify(h)); },
-  getTokens:()=> JSON.parse(localStorage.getItem('ls_tokens')||'{}'),
-  saveTokens:(t)=> localStorage.setItem('ls_tokens', JSON.stringify(t)),
-
-  createToken(clientId){
-    const tokens = DB.getTokens();
-    const token = 'SPT_' + Math.random().toString(36).substr(2,9).toUpperCase() + '_' + Date.now();
-    tokens[token] = { clientId, used: false, createdAt: new Date().toISOString() };
-    DB.saveTokens(tokens);
-    return token;
-  },
-  getToken(token){ return DB.getTokens()[token] || null; },
-  markTokenUsed(token, pts){
-    const tokens = DB.getTokens();
-    if(tokens[token]){
-      tokens[token].used = true;
-      tokens[token].usedAt = new Date().toISOString();
-      tokens[token].ptsAwarded = pts;
-    }
-    DB.saveTokens(tokens);
-  },
-  // Encode all spin data into URL so girar.html needs no localStorage
-  encodeSpinURL(clientId){
-    const c = DB.getClients().find(x=>x.id===clientId);
-    if(!c) return null;
-    const token = 'SPT_' + Math.random().toString(36).substr(2,9).toUpperCase() + '_' + Date.now();
-    // Save token locally for tracking
-    const tokens = DB.getTokens();
-    tokens[token] = { clientId, used: false, createdAt: new Date().toISOString() };
-    DB.saveTokens(tokens);
-    // Encode client data + token into URL param
-    const payload = btoa(JSON.stringify({
-      t: token,
-      id: c.id,
-      name: c.name,
-      pts: c.points || 0
-    }));
-    return { token, url: `${BASE_SPIN_URL}?d=${payload}` };
-  },
-  getClientTokens(clientId){
-    const tokens = DB.getTokens();
-    return Object.entries(tokens)
-      .filter(([,v])=> v.clientId === clientId)
-      .map(([k,v])=>({token:k,...v}))
-      .sort((a,b)=> new Date(b.createdAt)-new Date(a.createdAt));
-  },
-  addPointsToClient(clientId, pts){
-    const clients = DB.getClients();
-    const c = clients.find(x=>x.id===clientId);
-    if(!c) return null;
-    c.points = (c.points||0) + pts;
-    DB.saveClients(clients);
-    return c;
-  }
+const firebaseConfig = {
+  apiKey: "AIzaSyCdXUX2_ydiPcj51ciV9YrSczAcs6m2F30",
+  authDomain: "loyalspin03.firebaseapp.com",
+  projectId: "loyalspin03",
+  storageBucket: "loyalspin03.firebasestorage.app",
+  messagingSenderId: "480148425420",
+  appId: "1:480148425420:web:f0f8c0e749fdc0da8e1069"
 };
 
-/* ══ SEED ══ */
-if(!localStorage.getItem('ls_clients')){
-  DB.saveClients([
-    {id:'CL001',name:'María García',phone:'+57 300 111 2233',points:350,createdAt:new Date().toISOString()},
-    {id:'CL002',name:'Carlos Ramírez',phone:'+57 315 444 5566',points:1200,createdAt:new Date().toISOString()},
-    {id:'CL003',name:'Sofía Martínez',phone:'',points:75,createdAt:new Date().toISOString()},
-  ]);
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const ADMIN_USER = 'admin';
+const ADMIN_PASS = 'loyalspin2024';
+const BASE_SPIN_URL = 'https://zavierudev.github.io/loyalspin/girar.html';
 
 /* ══ AUTH ══ */
-function doLogin(){
-  const u=document.getElementById('loginUser').value.trim();
-  const p=document.getElementById('loginPass').value;
-  if(u===ADMIN_USER && p===ADMIN_PASS){
+window.doLogin = function() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if (u === ADMIN_USER && p === ADMIN_PASS) {
     sessionStorage.setItem('auth','1');
-    document.getElementById('loginScreen').style.display='none';
-    document.getElementById('adminPanel').style.display='block';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
     initDashboard();
   } else {
-    const el=document.getElementById('loginError');
-    el.style.display='block';
-    setTimeout(()=>el.style.display='none',2500);
+    const el = document.getElementById('loginError');
+    el.style.display = 'block';
+    setTimeout(()=> el.style.display='none', 2500);
   }
-}
-document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
-document.getElementById('loginUser').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
-function logout(){ sessionStorage.removeItem('auth'); location.reload(); }
-if(sessionStorage.getItem('auth')==='1'){
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('adminPanel').style.display='block';
-  setTimeout(initDashboard,0);
+};
+document.getElementById('loginPass').addEventListener('keydown', e=>{ if(e.key==='Enter') window.doLogin(); });
+document.getElementById('loginUser').addEventListener('keydown', e=>{ if(e.key==='Enter') window.doLogin(); });
+window.logout = function(){ sessionStorage.removeItem('auth'); location.reload(); };
+if (sessionStorage.getItem('auth')==='1') {
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminPanel').style.display = 'block';
+  setTimeout(initDashboard, 0);
 }
 
 /* ══ NAV ══ */
-function showPage(name){
+window.showPage = function(name) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.getElementById('nav-'+name).classList.add('active');
-  if(name==='clients') renderClientsList();
-  if(name==='history') renderHistory();
-  if(name==='dashboard') initDashboard();
-}
-
-/* ══ DASHBOARD ══ */
-function processPending(){
-  // Pick up any spin results that happened on other devices
-  const pending=JSON.parse(localStorage.getItem('ls_pending')||'[]');
-  if(!pending.length) return;
-  let applied=0;
-  const clients=DB.getClients();
-  const tokens=DB.getTokens();
-  pending.forEach(p=>{
-    // Apply points if not already applied
-    const c=clients.find(x=>x.id===p.clientId);
-    if(c && tokens[p.token] && !tokens[p.token].used){
-      c.points=(c.points||0)+p.pts;
-      tokens[p.token].used=true;
-      tokens[p.token].usedAt=p.ts;
-      tokens[p.token].ptsAwarded=p.pts;
-      DB.addHistory({ts:p.ts,clientId:p.clientId,clientName:p.clientName,pts:p.pts,type:'qrspin'});
-      applied++;
-    }
-  });
-  if(applied>0){
-    DB.saveClients(clients);
-    DB.saveTokens(tokens);
-    localStorage.setItem('ls_pending','[]');
-    toast('✅ '+applied+' giro(s) sincronizados automáticamente','success');
-  } else {
-    localStorage.setItem('ls_pending','[]');
-  }
-}
-
-function initDashboard(){
-  processPending();
-  const clients=DB.getClients();
-  const history=DB.getHistory();
-  const tokens=DB.getTokens();
-  const activeQR=Object.values(tokens).filter(t=>!t.used&&!t.cancelled).length;
-  const totalSpins=Object.values(tokens).filter(t=>t.used).length;
-  const totalPts=clients.reduce((s,c)=>s+(c.points||0),0);
-  document.getElementById('statClients').textContent=clients.length;
-  document.getElementById('statPoints').textContent=totalPts.toLocaleString();
-  document.getElementById('statActiveQR').textContent=activeQR;
-  document.getElementById('statSpins').textContent=totalSpins;
-  document.getElementById('quickResults').innerHTML='';
-  document.getElementById('quickSearch').value='';
-}
+  if (name==='clients') renderClientsList();
+  if (name==='history') renderHistory();
+  if (name==='dashboard') initDashboard();
+};
 
 /* ══ HELPERS ══ */
 function initials(name){ return name.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
 
-function clientCardHTML(c){
-  const tokens=DB.getClientTokens(c.id);
-  const activeToken=tokens.find(t=>!t.used&&!t.cancelled);
-  const badge = activeToken
-    ? `<span style="font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(92,224,160,.1);color:var(--success);border:1px solid rgba(92,224,160,.25)">QR activo</span>`
-    : '';
+function clientCardHTML(c) {
   return `<div class="client-card" onclick="openClientModal('${c.id}')">
     <div class="client-avatar">${initials(c.name)}</div>
     <div class="client-info">
-      <div class="client-name">${c.name} ${badge}</div>
+      <div class="client-name">${c.name}</div>
       <div class="client-id">${c.id}${c.phone?' · '+c.phone:''}</div>
     </div>
     <div class="client-points">${(c.points||0).toLocaleString()}<span>puntos</span></div>
   </div>`;
 }
 
-function quickSearchFn(){
-  const q=document.getElementById('quickSearch').value.trim().toLowerCase();
-  const div=document.getElementById('quickResults');
-  if(!q){div.innerHTML='';return;}
-  const results=DB.getClients().filter(c=>c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q));
-  div.innerHTML=results.length ? results.map(clientCardHTML).join('') : '<div class="empty-state"><div class="empty-icon">🔍</div><p>Sin resultados</p></div>';
+/* ══ DASHBOARD ══ */
+async function initDashboard() {
+  document.getElementById('quickResults').innerHTML = '';
+  document.getElementById('quickSearch').value = '';
+
+  const [clientsSnap, historySnap, tokensSnap] = await Promise.all([
+    getDocs(collection(db,'clients')),
+    getDocs(collection(db,'history')),
+    getDocs(collection(db,'tokens'))
+  ]);
+
+  const clients = clientsSnap.docs.map(d=>({id:d.id,...d.data()}));
+  const totalPts = clients.reduce((s,c)=>s+(c.points||0),0);
+  const tokens = tokensSnap.docs.map(d=>d.data());
+  const activeQR = tokens.filter(t=>!t.used&&!t.cancelled).length;
+  const totalSpins = tokens.filter(t=>t.used).length;
+
+  document.getElementById('statClients').textContent = clients.length;
+  document.getElementById('statPoints').textContent = totalPts.toLocaleString();
+  document.getElementById('statActiveQR').textContent = activeQR;
+  document.getElementById('statSpins').textContent = totalSpins;
 }
 
-function filterClients(){
-  const q=document.getElementById('clientSearch').value.trim().toLowerCase();
-  const all=DB.getClients().filter(c=>!q||c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q));
-  document.getElementById('clientsList').innerHTML=all.length ? all.map(clientCardHTML).join('') : '<div class="empty-state"><div class="empty-icon">👥</div><p>No hay clientes</p></div>';
+/* ══ SEARCH ══ */
+let allClients = [];
+window.quickSearchFn = function() {
+  const q = document.getElementById('quickSearch').value.trim().toLowerCase();
+  const div = document.getElementById('quickResults');
+  if (!q) { div.innerHTML=''; return; }
+  const results = allClients.filter(c=>c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q));
+  div.innerHTML = results.length ? results.map(clientCardHTML).join('') : '<div class="empty-state"><div class="empty-icon">🔍</div><p>Sin resultados</p></div>';
+};
+
+async function loadAllClients() {
+  const snap = await getDocs(collection(db,'clients'));
+  allClients = snap.docs.map(d=>({id:d.id,...d.data()}));
+  return allClients;
 }
-function renderClientsList(){ document.getElementById('clientSearch').value=''; filterClients(); }
+
+window.filterClients = function() {
+  const q = document.getElementById('clientSearch').value.trim().toLowerCase();
+  const filtered = allClients.filter(c=>!q||c.id.toLowerCase().includes(q)||c.name.toLowerCase().includes(q));
+  document.getElementById('clientsList').innerHTML = filtered.length
+    ? filtered.map(clientCardHTML).join('')
+    : '<div class="empty-state"><div class="empty-icon">👥</div><p>No hay clientes</p></div>';
+};
+
+async function renderClientsList() {
+  document.getElementById('clientsList').innerHTML = '<div class="fb-loading">Cargando clientes…</div>';
+  await loadAllClients();
+  document.getElementById('clientSearch').value = '';
+  window.filterClients();
+}
 
 /* ══ ADD CLIENT ══ */
-function addClient(){
-  const id=document.getElementById('fId').value.trim().toUpperCase();
-  const name=document.getElementById('fName').value.trim();
-  const phone=document.getElementById('fPhone').value.trim();
-  const pts=parseInt(document.getElementById('fPoints').value)||0;
-  if(!id||!name){toast('Completa los campos requeridos','error');return;}
-  const clients=DB.getClients();
-  if(clients.find(c=>c.id===id)){toast('El ID ya existe','error');return;}
-  clients.push({id,name,phone,points:pts,createdAt:new Date().toISOString()});
-  DB.saveClients(clients);
-  if(pts>0) DB.addHistory({ts:new Date().toISOString(),clientId:id,clientName:name,pts,type:'manual'});
+window.addClient = async function() {
+  const id = document.getElementById('fId').value.trim().toUpperCase();
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const pts = parseInt(document.getElementById('fPoints').value)||0;
+  if (!id||!name) { toast('Completa los campos requeridos','error'); return; }
+
+  const existing = await getDoc(doc(db,'clients',id));
+  if (existing.exists()) { toast('El ID ya existe','error'); return; }
+
+  await setDoc(doc(db,'clients',id), {
+    id, name, phone, points: pts, createdAt: serverTimestamp()
+  });
+  if (pts > 0) {
+    await addDoc(collection(db,'history'), {
+      clientId: id, clientName: name, pts, type:'manual', ts: serverTimestamp()
+    });
+  }
   toast(`✅ Cliente ${name} registrado`,'success');
   ['fId','fName','fPhone'].forEach(f=>document.getElementById(f).value='');
   document.getElementById('fPoints').value='0';
-}
+  allClients = [];
+};
 
 /* ══ CLIENT MODAL ══ */
-function openClientModal(clientId){
-  const c=DB.getClients().find(x=>x.id===clientId);
-  if(!c) return;
-  const tokens=DB.getClientTokens(clientId);
-  const activeToken=tokens.find(t=>!t.used&&!t.cancelled);
+window.openClientModal = async function(clientId) {
+  document.getElementById('modalContent').innerHTML = '<div class="fb-loading">Cargando…</div>';
+  openModal('clientModal');
 
-  document.getElementById('modalContent').innerHTML=`
+  const cSnap = await getDoc(doc(db,'clients',clientId));
+  if (!cSnap.exists()) return;
+  const c = {id:cSnap.id,...cSnap.data()};
+
+  const tokensSnap = await getDocs(query(collection(db,'tokens'), where('clientId','==',clientId), orderBy('createdAt','desc')));
+  const tokens = tokensSnap.docs.map(d=>({tokenId:d.id,...d.data()}));
+  const activeToken = tokens.find(t=>!t.used&&!t.cancelled);
+
+  document.getElementById('modalContent').innerHTML = `
     <h2>${c.name}</h2>
     <div class="modal-info-row">
       <div class="modal-info-item"><label>ID</label><span>${c.id}</span></div>
       ${c.phone?`<div class="modal-info-item"><label>Teléfono</label><span style="font-size:15px">${c.phone}</span></div>`:''}
       <div class="modal-info-item pts"><label>Puntos</label><span id="modalPts">${(c.points||0).toLocaleString()}</span></div>
     </div>
-
     <div class="tab-row">
       <button class="tab active" onclick="switchModalTab('acciones')">Acciones</button>
       <button class="tab" onclick="switchModalTab('qrs')">QR de giro</button>
       <button class="tab" onclick="switchModalTab('historial')">Historial</button>
     </div>
-
     <div id="mtab-acciones">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px">
-
         <div style="background:rgba(92,224,160,.05);border:1px solid rgba(92,224,160,.15);border-radius:12px;padding:16px">
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--success);margin-bottom:10px;font-weight:500">➕ Agregar puntos</div>
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -505,7 +409,6 @@ function openClientModal(clientId){
             <button class="btn-sm" style="background:rgba(92,224,160,.12);color:var(--success);border:1px solid rgba(92,224,160,.2)" onclick="addManualPoints('${c.id}')">Agregar</button>
           </div>
         </div>
-
         <div style="background:rgba(224,92,92,.05);border:1px solid rgba(224,92,92,.15);border-radius:12px;padding:16px">
           <div style="font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--danger);margin-bottom:10px;font-weight:500">🎁 Canjear puntos</div>
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -513,228 +416,235 @@ function openClientModal(clientId){
             <button class="btn-sm danger" style="border:1px solid rgba(224,92,92,.2)" onclick="redeemPoints('${c.id}')">Canjear</button>
           </div>
         </div>
-
       </div>
       <div style="text-align:right">
         <button class="btn-sm danger" onclick="deleteClient('${c.id}')">🗑 Eliminar cliente</button>
       </div>
     </div>
-
     <div id="mtab-qrs" style="display:none">
       <div style="margin-bottom:16px">
-        ${activeToken
-          ? `<div style="background:rgba(92,224,160,.07);border:1px solid rgba(92,224,160,.2);border-radius:12px;padding:14px 18px;margin-bottom:16px;font-size:13px">
-              ⚠️ Ya hay un QR activo sin usar. Puedes mostrar ese QR o generar uno nuevo (el anterior se cancelará).
-             </div>`
-          : ''}
+        ${activeToken?`<div style="background:rgba(92,224,160,.07);border:1px solid rgba(92,224,160,.2);border-radius:12px;padding:14px 18px;margin-bottom:16px;font-size:13px">⚠️ Ya hay un QR activo sin usar.</div>`:''}
         <button class="btn-accent" onclick="generateSpinQR('${c.id}')">🎰 Generar nuevo QR de giro</button>
       </div>
-      <div class="token-list" id="tokenList_${c.id}">${renderTokenList(clientId)}</div>
+      <div class="token-list" id="tokenList_${c.id}">
+        ${renderTokenListHTML(tokens)}
+      </div>
     </div>
-
     <div id="mtab-historial" style="display:none">
-      ${renderMiniHistory(clientId)}
+      <div id="miniHistoryContainer"><div class="fb-loading">Cargando…</div></div>
     </div>
   `;
-  openModal('clientModal');
-}
+};
 
-function renderTokenList(clientId){
-  const tokens=DB.getClientTokens(clientId);
-  // Only show: the one active token + used tokens (hide cancelled)
-  const visible=tokens.filter(t=>!t.cancelled).slice(0,8);
-  if(!visible.length) return '<p style="color:var(--muted);font-size:13px">Sin QR generados aún</p>';
+function renderTokenListHTML(tokens) {
+  const visible = tokens.filter(t=>!t.cancelled).slice(0,8);
+  if (!visible.length) return '<p style="color:var(--muted);font-size:13px">Sin QR generados aún</p>';
   return visible.map(t=>`
     <div class="token-row">
       <div class="token-status ${t.used?'used':'active'}"></div>
       <div class="token-info">
-        <div class="token-code">${t.token.substring(0,18)}…</div>
-        <div class="token-meta">Creado: ${new Date(t.createdAt).toLocaleString('es-CO')}
-          ${t.used?` · Usado: ${new Date(t.usedAt).toLocaleString('es-CO')} · +${t.ptsAwarded}pts`:''}</div>
+        <div class="token-code">${t.tokenId.substring(0,18)}…</div>
+        <div class="token-meta">Creado: ${t.createdAt?.toDate?.()?.toLocaleString('es-CO')||'—'}
+          ${t.used?` · Usado · +${t.ptsAwarded}pts`:''}</div>
       </div>
       <span class="token-badge ${t.used?'used':'active'}">${t.used?'Usado':'Activo'}</span>
-      ${!t.used?`<button class="btn-sm primary" style="margin-left:8px" onclick="showExistingQR('${t.token}')">Ver QR</button>`:''}
+      ${!t.used?`<button class="btn-sm primary" style="margin-left:8px" onclick="showExistingQR('${t.tokenId}')">Ver QR</button>`:''}
     </div>
   `).join('');
 }
 
-function renderMiniHistory(clientId){
-  const history=DB.getHistory().filter(h=>h.clientId===clientId).slice(0,8);
-  if(!history.length) return '<p style="color:var(--muted);font-size:13px">Sin movimientos</p>';
-  return `<table class="history-table"><thead><tr><th>Fecha</th><th>Pts</th><th>Tipo</th></tr></thead><tbody>
+window.switchModalTab = function(tab) {
+  ['acciones','qrs','historial'].forEach(t=>{
+    document.getElementById('mtab-'+t).style.display = t===tab?'block':'none';
+  });
+  document.querySelectorAll('#clientModal .tab').forEach((btn,i)=>{
+    btn.classList.toggle('active', ['acciones','qrs','historial'][i]===tab);
+  });
+  if (tab==='historial') loadMiniHistory();
+};
+
+async function loadMiniHistory() {
+  const container = document.getElementById('miniHistoryContainer');
+  if (!container) return;
+  // Get client id from modal
+  const h2 = document.querySelector('#modalContent h2');
+  if (!h2) return;
+  // We store clientId on the generate button
+  const btn = document.querySelector('#mtab-qrs .btn-accent');
+  if (!btn) return;
+  const match = btn.getAttribute('onclick').match(/'([^']+)'/);
+  if (!match) return;
+  const clientId = match[1];
+
+  const snap = await getDocs(query(collection(db,'history'), where('clientId','==',clientId), orderBy('ts','desc'), limit(10)));
+  const history = snap.docs.map(d=>d.data());
+  if (!history.length) { container.innerHTML='<p style="color:var(--muted);font-size:13px">Sin movimientos</p>'; return; }
+  container.innerHTML = `<table class="history-table"><thead><tr><th>Fecha</th><th>Pts</th><th>Tipo</th></tr></thead><tbody>
     ${history.map(h=>`<tr>
-      <td style="color:var(--muted)">${new Date(h.ts).toLocaleString('es-CO')}</td>
+      <td style="color:var(--muted);font-size:12px">${h.ts?.toDate?.()?.toLocaleString('es-CO')||'—'}</td>
       <td>${h.type==='redeem'
-        ? `<span class="badge" style="background:rgba(224,92,92,.1);color:var(--danger)">${h.pts} pts</span>`
-        : `<span class="badge badge-pts">+${h.pts} pts</span>`
-      }</td>
-      <td>${h.type==='spin'?'🎰 Ruleta':h.type==='qrspin'?'📱 QR Ruleta':h.type==='redeem'?'🎁 Canje':'✏️ Manual'}</td>
+        ?`<span class="badge" style="background:rgba(224,92,92,.1);color:var(--danger)">${h.pts} pts</span>`
+        :`<span class="badge badge-pts">+${h.pts} pts</span>`}</td>
+      <td>${h.type==='qrspin'?'📱 QR Ruleta':h.type==='redeem'?'🎁 Canje':'✏️ Manual'}</td>
     </tr>`).join('')}
   </tbody></table>`;
 }
 
-function switchModalTab(tab){
-  ['acciones','qrs','historial'].forEach(t=>{
-    document.getElementById('mtab-'+t).style.display=t===tab?'block':'none';
-  });
-  document.querySelectorAll('#clientModal .tab').forEach((btn,i)=>{
-    btn.classList.toggle('active',['acciones','qrs','historial'][i]===tab);
-  });
-}
-
 /* ══ MANUAL POINTS ══ */
-function addManualPoints(clientId){
-  const pts=parseInt(document.getElementById('addPts').value);
-  if(!pts||pts<1){toast('Ingresa una cantidad válida','error');return;}
-  const c=DB.addPointsToClient(clientId,pts);
-  if(!c) return;
-  DB.addHistory({ts:new Date().toISOString(),clientId,clientName:c.name,pts,type:'manual'});
-  document.getElementById('modalPts').textContent=c.points.toLocaleString();
-  document.getElementById('addPts').value='';
-  toast(`+${pts} puntos agregados a ${c.name}`,'success');
-  initDashboard();
-}
+window.addManualPoints = async function(clientId) {
+  const pts = parseInt(document.getElementById('addPts').value);
+  if (!pts||pts<1) { toast('Ingresa una cantidad válida','error'); return; }
+  await updateDoc(doc(db,'clients',clientId), { points: increment(pts) });
+  const cSnap = await getDoc(doc(db,'clients',clientId));
+  const c = cSnap.data();
+  await addDoc(collection(db,'history'), {
+    clientId, clientName: c.name, pts, type:'manual', ts: serverTimestamp()
+  });
+  document.getElementById('modalPts').textContent = (c.points||0).toLocaleString();
+  document.getElementById('addPts').value = '';
+  toast(`+${pts} puntos agregados`,'success');
+  allClients = [];
+};
 
-function redeemPoints(clientId){
-  const pts=parseInt(document.getElementById('redeemPts').value);
-  if(!pts||pts<1){toast('Ingresa una cantidad válida','error');return;}
-  const clients=DB.getClients();
-  const c=clients.find(x=>x.id===clientId);
-  if(!c) return;
-  if(pts > c.points){
-    toast(`❌ No tiene suficientes puntos (tiene ${c.points})`,'error');
-    return;
-  }
-  c.points=c.points-pts;
-  DB.saveClients(clients);
-  DB.addHistory({ts:new Date().toISOString(),clientId,clientName:c.name,pts:-pts,type:'redeem'});
-  document.getElementById('modalPts').textContent=c.points.toLocaleString();
-  document.getElementById('redeemPts').value='';
-  toast(`🎁 Canjeados ${pts} puntos de ${c.name}`,'success');
-  initDashboard();
-}
+window.redeemPoints = async function(clientId) {
+  const pts = parseInt(document.getElementById('redeemPts').value);
+  if (!pts||pts<1) { toast('Ingresa una cantidad válida','error'); return; }
+  const cSnap = await getDoc(doc(db,'clients',clientId));
+  const c = cSnap.data();
+  if (pts > (c.points||0)) { toast(`❌ No tiene suficientes puntos (tiene ${c.points})`,'error'); return; }
+  await updateDoc(doc(db,'clients',clientId), { points: increment(-pts) });
+  await addDoc(collection(db,'history'), {
+    clientId, clientName: c.name, pts: -pts, type:'redeem', ts: serverTimestamp()
+  });
+  const newPts = (c.points||0) - pts;
+  document.getElementById('modalPts').textContent = newPts.toLocaleString();
+  document.getElementById('redeemPts').value = '';
+  toast(`🎁 Canjeados ${pts} puntos`,'success');
+  allClients = [];
+};
 
-function deleteClient(clientId){
-  if(!confirm('¿Eliminar este cliente? No se puede deshacer.')) return;
-  DB.saveClients(DB.getClients().filter(c=>c.id!==clientId));
+window.deleteClient = async function(clientId) {
+  if (!confirm('¿Eliminar este cliente? No se puede deshacer.')) return;
+  await deleteDoc(doc(db,'clients',clientId));
   closeModal('clientModal');
+  allClients = [];
   renderClientsList();
   toast('Cliente eliminado','error');
-}
+};
 
 /* ══ GENERATE SPIN QR ══ */
-function generateSpinQR(clientId){
-  // Cancel every active token for this client first
-  const tokens=DB.getTokens();
-  Object.keys(tokens).forEach(k=>{
-    if(tokens[k].clientId===clientId && !tokens[k].used && !tokens[k].cancelled)
-      tokens[k].cancelled=true;
+window.generateSpinQR = async function(clientId) {
+  // Cancel active tokens
+  const tokensSnap = await getDocs(query(collection(db,'tokens'), where('clientId','==',clientId), where('used','==',false), where('cancelled','==',false)));
+  const cancelPromises = tokensSnap.docs.map(d=>updateDoc(doc(db,'tokens',d.id),{cancelled:true}));
+  await Promise.all(cancelPromises);
+
+  const cSnap = await getDoc(doc(db,'clients',clientId));
+  if (!cSnap.exists()) return;
+  const c = {id:cSnap.id,...cSnap.data()};
+
+  // Create token in Firestore
+  const tokenRef = await addDoc(collection(db,'tokens'), {
+    clientId, used: false, cancelled: false, createdAt: serverTimestamp()
   });
-  DB.saveTokens(tokens);
+  const tokenId = tokenRef.id;
 
-  const result=DB.encodeSpinURL(clientId);
-  if(!result) return;
-  showQRModal(result.url, result.token, clientId);
+  const payload = btoa(JSON.stringify({t:tokenId, id:c.id, name:c.name, pts:c.points||0}));
+  const url = `${BASE_SPIN_URL}?d=${payload}`;
 
-  const listEl=document.getElementById('tokenList_'+clientId);
-  if(listEl) listEl.innerHTML=renderTokenList(clientId);
-  initDashboard();
-}
+  showQRModal(url, tokenId, c);
+};
 
-function showExistingQR(token){
-  const t=DB.getToken(token);
-  if(!t||t.used||t.cancelled){toast('Este QR ya fue usado o cancelado','error');return;}
-  // Just re-build the URL from the existing token — NO new token created
-  const c=DB.getClients().find(x=>x.id===t.clientId);
-  if(!c) return;
-  const payload=btoa(JSON.stringify({t:token,id:c.id,name:c.name,pts:c.points||0}));
-  const url=BASE_SPIN_URL+'?d='+payload;
-  showQRModal(url, token, t.clientId);
-}
+window.showExistingQR = async function(tokenId) {
+  const tSnap = await getDoc(doc(db,'tokens',tokenId));
+  if (!tSnap.exists()) return;
+  const t = tSnap.data();
+  if (t.used||t.cancelled) { toast('Este QR ya fue usado o cancelado','error'); return; }
+  const cSnap = await getDoc(doc(db,'clients',t.clientId));
+  if (!cSnap.exists()) return;
+  const c = {id:cSnap.id,...cSnap.data()};
+  const payload = btoa(JSON.stringify({t:tokenId, id:c.id, name:c.name, pts:c.points||0}));
+  const url = `${BASE_SPIN_URL}?d=${payload}`;
+  showQRModal(url, tokenId, c);
+};
 
-function qrImageURL(text, size){
-  // Uses Google Charts QR API — works offline-friendly via URL
-  return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}&bgcolor=1a1a26&color=f0ede8&margin=10`;
-}
-
-function showQRModal(url, token, clientId){
-  const c=DB.getClients().find(x=>x.id===clientId);
-  const box=document.getElementById('qrBoxContent');
-  const imgSrc=qrImageURL(url,220);
-  box.innerHTML=`
-    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px">${c?c.name:clientId}</p>
+function showQRModal(url, tokenId, c) {
+  const box = document.getElementById('qrBoxContent');
+  const imgSrc = `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(url)}&bgcolor=1a1a26&color=f0ede8&margin=10`;
+  box.innerHTML = `
+    <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:16px">${c.name}</p>
     <div style="width:220px;height:220px;margin:0 auto 16px;border-radius:12px;overflow:hidden;background:var(--surface2);display:flex;align-items:center;justify-content:center" id="qrImgWrap">
-      <div style="color:var(--muted);font-size:13px" id="qrLoading">Generando QR…</div>
+      <div style="color:var(--muted);font-size:13px">Generando QR…</div>
     </div>
     <div class="qr-url">${url}</div>`;
 
-  // Try external QR API first
-  const img=new Image();
-  img.onload=()=>{
+  const img = new Image();
+  img.onload = ()=>{
     img.style.cssText='width:220px;height:220px;border-radius:12px;display:block';
-    const wrap=document.getElementById('qrImgWrap');
+    const wrap = document.getElementById('qrImgWrap');
     if(wrap){wrap.innerHTML='';wrap.appendChild(img);}
   };
-  img.onerror=()=>{
-    // Fallback: draw QR using inline SVG matrix
-    const wrap=document.getElementById('qrImgWrap');
-    if(wrap) wrap.innerHTML=generateSVGQR(url);
+  img.onerror = ()=>{
+    const wrap = document.getElementById('qrImgWrap');
+    if(wrap) wrap.innerHTML=`<div style="padding:12px;font-size:11px;color:var(--muted)">📱 Copia la URL de abajo</div>`;
   };
-  img.src=imgSrc;
+  img.src = imgSrc;
 
-  document.getElementById('qrDownloadBtn').onclick=()=>{
-    const a=document.createElement('a');
-    a.href=qrImageURL(url,400);
-    a.download=`QR_Giro_${(c?c.name:'cliente').replace(/\s+/g,'_')}.png`;
-    a.target='_blank';
+  document.getElementById('qrDownloadBtn').onclick = ()=>{
+    const a = document.createElement('a');
+    a.href = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(url)}&bgcolor=1a1a26&color=f0ede8&margin=10`;
+    a.download = `QR_Giro_${c.name.replace(/\s+/g,'_')}.png`;
+    a.target = '_blank';
     a.click();
   };
   closeModal('clientModal');
   openModal('qrModal');
 }
 
-// Pure JS QR fallback using qrcodegen
-function generateSVGQR(text){
-  // Simple visual fallback showing the URL as text if no network
-  return `<div style="padding:12px;text-align:center;font-size:11px;color:var(--muted);line-height:1.6">
-    <div style="font-size:32px;margin-bottom:8px">📱</div>
-    Sin conexión para generar QR visual.<br>
-    Copia esta URL y úsala:<br>
-    <span style="color:var(--accent);word-break:break-all">${text}</span>
-  </div>`;
-}
-
 /* ══ HISTORY PAGE ══ */
-function renderHistory(){
-  const h=DB.getHistory();
-  const tbody=document.getElementById('historyBody');
-  if(!h.length){tbody.innerHTML='<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:40px">Sin registros</td></tr>';return;}
-  tbody.innerHTML=h.slice(0,100).map(e=>`<tr>
-    <td style="color:var(--muted);font-size:12px">${new Date(e.ts).toLocaleString('es-CO')}</td>
-    <td>${e.clientName}</td>
-    <td style="color:var(--muted)">${e.clientId}</td>
-    <td>${e.type==='redeem'
-      ? `<span class="badge" style="background:rgba(224,92,92,.1);color:var(--danger)">${e.pts} pts</span>`
-      : `<span class="badge badge-pts">+${e.pts} pts</span>`
-    }</td>
-    <td>${e.type==='spin'?'🎰 Ruleta':e.type==='qrspin'?'📱 QR Ruleta':e.type==='redeem'?'🎁 Canje':'✏️ Manual'}</td>
-  </tr>`).join('');
+async function renderHistory() {
+  document.getElementById('historyContainer').innerHTML = '<div class="fb-loading">Cargando historial…</div>';
+  const snap = await getDocs(query(collection(db,'history'), orderBy('ts','desc'), limit(100)));
+  const history = snap.docs.map(d=>d.data());
+  if (!history.length) {
+    document.getElementById('historyContainer').innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><p>Sin registros</p></div>';
+    return;
+  }
+  document.getElementById('historyContainer').innerHTML = `
+    <table class="history-table">
+      <thead><tr><th>Fecha / Hora</th><th>Cliente</th><th>ID</th><th>Puntos</th><th>Tipo</th></tr></thead>
+      <tbody>
+        ${history.map(h=>`<tr>
+          <td style="color:var(--muted);font-size:12px">${h.ts?.toDate?.()?.toLocaleString('es-CO')||'—'}</td>
+          <td>${h.clientName}</td>
+          <td style="color:var(--muted)">${h.clientId}</td>
+          <td>${h.type==='redeem'
+            ?`<span class="badge" style="background:rgba(224,92,92,.1);color:var(--danger)">${h.pts} pts</span>`
+            :`<span class="badge badge-pts">+${h.pts} pts</span>`
+          }</td>
+          <td>${h.type==='qrspin'?'📱 QR Ruleta':h.type==='redeem'?'🎁 Canje':'✏️ Manual'}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
 }
 
 /* ══ MODAL HELPERS ══ */
-function openModal(id){document.getElementById(id).classList.add('open');}
-function closeModal(id){document.getElementById(id).classList.remove('open');}
+window.openModal = function(id){ document.getElementById(id).classList.add('open'); };
+window.closeModal = function(id){ document.getElementById(id).classList.remove('open'); };
 document.querySelectorAll('.modal-overlay').forEach(m=>{
-  m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
+  m.addEventListener('click', e=>{ if(e.target===m) m.classList.remove('open'); });
 });
 
 /* ══ TOAST ══ */
 let _t;
-function toast(msg,type=''){
-  const el=document.getElementById('toast');
-  el.textContent=msg; el.className='show '+(type||'');
-  clearTimeout(_t); _t=setTimeout(()=>el.className='',3000);
-}
+window.toast = function(msg, type='') {
+  const el = document.getElementById('toast');
+  el.textContent = msg; el.className = 'show '+(type||'');
+  clearTimeout(_t); _t = setTimeout(()=>el.className='', 3000);
+};
+
+// Load clients for search on init
+loadAllClients();
 </script>
 </body>
 </html>

@@ -10,43 +10,29 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;position:relative}
-
 .bg-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
 .orb1{width:500px;height:500px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);animation:orbDrift 14s ease-in-out infinite}
 .orb2{width:400px;height:400px;bottom:-100px;right:-100px;background:radial-gradient(circle,rgba(80,60,160,.07) 0%,transparent 70%);animation:orbDrift 10s ease-in-out infinite reverse}
 @keyframes orbDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
-
 .card{position:relative;z-index:1;width:100%;max-width:400px;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:36px 32px;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.5)}
-
-/* STATES */
 .state{display:none}
 .state.active{display:block}
-
-/* LOADING */
 .loader{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 20px}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* HEADER */
 .brand{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
 .brand span{color:var(--accent)}
 .avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7a4e2d);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin:0 auto 14px;box-shadow:0 8px 24px rgba(200,169,110,.3)}
 .client-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;letter-spacing:-.3px}
 .client-pts{color:var(--muted);font-size:14px;margin-bottom:28px}
 .client-pts strong{color:var(--accent);font-family:'Syne',sans-serif;font-size:16px}
-
-/* WHEEL */
 .wheel-wrap{position:relative;width:260px;height:260px;margin:0 auto 24px}
 #wheelCanvas{border-radius:50%;display:block;box-shadow:0 0 0 6px var(--surface2),0 0 40px rgba(200,169,110,.15)}
 .wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid var(--accent);filter:drop-shadow(0 3px 6px rgba(200,169,110,.5));z-index:10}
 .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);z-index:10;display:flex;align-items:center;justify-content:center;font-size:16px}
-
 .cta-text{font-size:13px;color:var(--muted);margin-bottom:16px}
-
 .btn-spin{display:block;width:100%;padding:16px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1a1400;font-weight:800;font-size:18px;font-family:'Syne',sans-serif;cursor:pointer;letter-spacing:.04em;transition:all .2s;box-shadow:0 8px 24px rgba(200,169,110,.3)}
 .btn-spin:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,169,110,.4)}
 .btn-spin:disabled{opacity:.4;cursor:not-allowed;transform:none}
-
-/* RESULT */
 .result-box{margin:20px 0;background:linear-gradient(135deg,rgba(200,169,110,.12),rgba(200,169,110,.04));border:1px solid rgba(200,169,110,.25);border-radius:18px;padding:28px 20px;display:none}
 .result-box.show{display:block;animation:popIn .5s cubic-bezier(.175,.885,.32,1.275) both}
 @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
@@ -55,17 +41,10 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .result-pts-word{font-size:16px;color:var(--muted);margin-top:6px}
 .result-total{font-size:14px;color:var(--text);margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .result-total strong{color:var(--accent);font-family:'Syne',sans-serif;font-size:18px}
-
 .done-msg{font-size:13px;color:var(--muted);margin-top:16px;padding:12px 16px;background:rgba(122,120,144,.08);border-radius:10px;line-height:1.6}
-
-/* ERROR / USED STATES */
 .error-icon{font-size:56px;margin-bottom:16px}
 .error-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px}
 .error-msg{color:var(--muted);font-size:14px;line-height:1.7}
-.used-pts-box{background:rgba(200,169,110,.08);border:1px solid rgba(200,169,110,.2);border-radius:14px;padding:16px 20px;margin:20px 0;font-size:14px;color:var(--muted)}
-.used-pts-box strong{color:var(--accent);font-family:'Syne',sans-serif;font-size:20px;display:block;margin-top:4px}
-
-/* PARTICLES */
 .particle{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:100;animation:fall 2s ease-in forwards}
 @keyframes fall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
 </style>
@@ -75,14 +54,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <div class="bg-orb orb2"></div>
 
 <div class="card">
-
-  <!-- LOADING -->
   <div class="state active" id="stateLoading">
     <div class="loader"></div>
     <p style="color:var(--muted);font-size:14px">Verificando tu ruleta…</p>
   </div>
 
-  <!-- SPIN -->
   <div class="state" id="stateSpin">
     <div class="brand">Loyal<span>Spin</span> · tu premio</div>
     <div class="avatar" id="spinAvatar">?</div>
@@ -102,195 +78,177 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="result-total">Nuevo total: <strong id="resultTotal">0</strong> puntos</div>
     </div>
     <div class="done-msg" id="doneMsgHidden" style="display:none">
-      Este QR ya fue usado. Consulta con el negocio para obtener uno nuevo.
+      ¡Listo! Tus puntos fueron sumados automáticamente. 🎉
     </div>
   </div>
 
-  <!-- USED -->
   <div class="state" id="stateUsed">
     <div class="error-icon">🔒</div>
     <div class="error-title">QR ya utilizado</div>
-    <div class="error-msg">Este código de giro ya fue canjeado.</div>
-    <div class="used-pts-box" id="usedInfo"></div>
-    <div class="error-msg" style="margin-top:12px">Consulta con el negocio para obtener un nuevo código.</div>
+    <div class="error-msg">Este código de giro ya fue canjeado.<br><br>Consulta con el negocio para obtener un nuevo código.</div>
   </div>
 
-  <!-- INVALID -->
   <div class="state" id="stateInvalid">
     <div class="error-icon">❌</div>
     <div class="error-title">Código inválido</div>
     <div class="error-msg">Este QR no es válido o ya expiró.<br>Pídele al negocio que genere un nuevo código de giro.</div>
   </div>
-
 </div>
 
-<script>
-// weight = probabilidad relativa (suma = 100)
-// 50pts → 45% | 100pts → 25% | 200pts → 18% | 500pts → 9% | 1000pts → 3%
-const PRIZES=[
-  {pts:50,   color:'#ff6b6b', weight:22},
-  {pts:100,  color:'#ff8e53', weight:13},
-  {pts:200,  color:'#ffd700', weight:9},
-  {pts:100,  color:'#51cf66', weight:12},
-  {pts:500,  color:'#339af0', weight:9},
-  {pts:50,   color:'#cc5de8', weight:23},
-  {pts:1000, color:'#ff6b6b', weight:3},
-  {pts:200,  color:'#ff8e53', weight:9},
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {
+  getFirestore, doc, getDoc, updateDoc, addDoc, collection, increment, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCdXUX2_ydiPcj51ciV9YrSczAcs6m2F30",
+  authDomain: "loyalspin03.firebaseapp.com",
+  projectId: "loyalspin03",
+  storageBucket: "loyalspin03.firebasestorage.app",
+  messagingSenderId: "480148425420",
+  appId: "1:480148425420:web:f0f8c0e749fdc0da8e1069"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const PRIZES = [
+  {pts:50,  color:'#ff6b6b', weight:22},
+  {pts:100, color:'#ff8e53', weight:13},
+  {pts:200, color:'#ffd700', weight:9},
+  {pts:100, color:'#51cf66', weight:12},
+  {pts:500, color:'#339af0', weight:9},
+  {pts:50,  color:'#cc5de8', weight:23},
+  {pts:1000,color:'#ff6b6b', weight:3},
+  {pts:200, color:'#ff8e53', weight:9},
 ];
-const WEIGHTED_POOL=[];
-PRIZES.forEach((p,i)=>{for(let w=0;w<p.weight;w++)WEIGHTED_POOL.push(i);});
+const WEIGHTED_POOL = [];
+PRIZES.forEach((p,i)=>{ for(let w=0;w<p.weight;w++) WEIGHTED_POOL.push(i); });
 
-// Track used tokens — stored in ls_pending_results so admin panel can pick them up
-// Works even across devices on same localhost because both share the server's files
-// On same browser: direct localStorage sync
-// On different device: we store a "pending result" that admin confirms on next reload
+let wheelAngle = 0, spinning = false, spinPayload = null;
 
-const USED_KEY='ls_spun_tokens';
-function getSpunTokens(){return JSON.parse(localStorage.getItem(USED_KEY)||'[]');}
-function markSpun(t){const s=getSpunTokens();s.push(t);localStorage.setItem(USED_KEY,JSON.stringify(s));}
-function wasSpun(t){return getSpunTokens().includes(t);}
-
-function syncBack(clientId,clientName,pts,token){
-  // Try direct sync (same browser)
-  try{
-    const clients=JSON.parse(localStorage.getItem('ls_clients')||'[]');
-    const c=clients.find(x=>x.id===clientId);
-    if(c){
-      c.points=(c.points||0)+pts;
-      localStorage.setItem('ls_clients',JSON.stringify(clients));
-    }
-    const tokens=JSON.parse(localStorage.getItem('ls_tokens')||'{}');
-    if(tokens[token]){
-      tokens[token].used=true;
-      tokens[token].usedAt=new Date().toISOString();
-      tokens[token].ptsAwarded=pts;
-      localStorage.setItem('ls_tokens',JSON.stringify(tokens));
-    }
-    const h=JSON.parse(localStorage.getItem('ls_history')||'[]');
-    h.unshift({ts:new Date().toISOString(),clientId,clientName,pts,type:'qrspin'});
-    localStorage.setItem('ls_history',JSON.stringify(h));
-  }catch(e){}
-
-  // Also store pending result — admin panel reads this on load
-  try{
-    const pending=JSON.parse(localStorage.getItem('ls_pending')||'[]');
-    pending.push({token,clientId,clientName,pts,ts:new Date().toISOString()});
-    localStorage.setItem('ls_pending',JSON.stringify(pending));
-  }catch(e){}
-}
-
-let wheelAngle=0,spinning=false,spinPayload=null;
-
-function drawWheel(rot){
-  const canvas=document.getElementById('wheelCanvas');
-  if(!canvas)return;
-  const ctx=canvas.getContext('2d');
+function drawWheel(rot) {
+  const canvas = document.getElementById('wheelCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
   const cx=130,cy=130,r=126;
-  const arc=(2*Math.PI)/PRIZES.length;
+  const arc = (2*Math.PI)/PRIZES.length;
   ctx.clearRect(0,0,260,260);
   PRIZES.forEach((p,i)=>{
-    const s=rot+i*arc,e=s+arc;
-    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,s,e);ctx.closePath();
-    ctx.fillStyle=p.color;ctx.fill();
-    ctx.strokeStyle='rgba(0,0,0,.25)';ctx.lineWidth=1.5;ctx.stroke();
-    ctx.save();ctx.translate(cx,cy);ctx.rotate(s+arc/2);
-    ctx.textAlign='right';ctx.fillStyle='#fff';
+    const s=rot+i*arc, e=s+arc;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,s,e); ctx.closePath();
+    ctx.fillStyle=p.color; ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,.25)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.save(); ctx.translate(cx,cy); ctx.rotate(s+arc/2);
+    ctx.textAlign='right'; ctx.fillStyle='#fff';
     ctx.font='bold 14px Syne,sans-serif';
-    ctx.shadowColor='rgba(0,0,0,.6)';ctx.shadowBlur=3;
+    ctx.shadowColor='rgba(0,0,0,.6)'; ctx.shadowBlur=3;
     ctx.fillText(String(p.pts),r-10,5);
     ctx.restore();
   });
 }
 
-function initials(n){return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase();}
-function showState(id){document.querySelectorAll('.state').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+function initials(n){ return n.split(' ').slice(0,2).map(w=>w[0]).join('').toUpperCase(); }
+function showState(id){ document.querySelectorAll('.state').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
 
-function init(){
-  const params=new URLSearchParams(window.location.search);
-  const d=params.get('d');
+async function init() {
+  const params = new URLSearchParams(window.location.search);
+  const d = params.get('d');
 
-  setTimeout(()=>{
-    if(!d){showState('stateInvalid');return;}
+  if (!d) { showState('stateInvalid'); return; }
 
-    let payload;
-    try{payload=JSON.parse(atob(d));}catch(e){showState('stateInvalid');return;}
-    if(!payload||!payload.t||!payload.id||!payload.name){showState('stateInvalid');return;}
+  let payload;
+  try { payload = JSON.parse(atob(d)); } catch(e) { showState('stateInvalid'); return; }
+  if (!payload||!payload.t||!payload.id||!payload.name) { showState('stateInvalid'); return; }
 
-    if(wasSpun(payload.t)){
-      document.getElementById('usedInfo').innerHTML=
-        '<div style="font-weight:500;color:var(--text);margin-bottom:6px">'+payload.name+'</div>'+
-        'Este código ya fue canjeado.<br>'+
-        '<div style="margin-top:8px;font-size:12px">Pide al negocio un nuevo código.</div>';
-      showState('stateUsed');
-      return;
-    }
-
-    spinPayload=payload;
-    document.getElementById('spinAvatar').textContent=initials(payload.name);
-    document.getElementById('spinName').textContent=payload.name;
-    document.getElementById('spinCurrentPts').textContent=(payload.pts||0).toLocaleString();
-    drawWheel(0);
-    showState('stateSpin');
-  },900);
-}
-
-function doSpin(){
-  if(spinning||!spinPayload)return;
-  if(wasSpun(spinPayload.t)){
-    document.getElementById('doneMsgHidden').style.display='block';
-    document.getElementById('spinBtn').style.display='none';
-    return;
+  // Verify token in Firestore
+  try {
+    const tokenSnap = await getDoc(doc(db,'tokens',payload.t));
+    if (!tokenSnap.exists()) { showState('stateInvalid'); return; }
+    const token = tokenSnap.data();
+    if (token.used || token.cancelled) { showState('stateUsed'); return; }
+  } catch(e) {
+    // If offline or error, show invalid
+    showState('stateInvalid'); return;
   }
 
-  spinning=true;
-  document.getElementById('spinBtn').disabled=true;
+  spinPayload = payload;
+  document.getElementById('spinAvatar').textContent = initials(payload.name);
+  document.getElementById('spinName').textContent = payload.name;
+  document.getElementById('spinCurrentPts').textContent = (payload.pts||0).toLocaleString();
+  drawWheel(0);
+  showState('stateSpin');
+}
 
-  const prizeIndex=WEIGHTED_POOL[Math.floor(Math.random()*WEIGHTED_POOL.length)];
-  const prize=PRIZES[prizeIndex];
-  const arc=(2*Math.PI)/PRIZES.length;
-  const spins = 5 + Math.random() * 3;
-  // Pointer sits at top = -PI/2 radians.
-  // Prize segment i occupies angles [i*arc, (i+1)*arc] from the wheel's rotation origin.
-  // We want the center of prize segment i to land at -PI/2 after rotation.
-  // So we need: (wheelAngle + extraRotation + prizeCenter) mod 2PI = -PI/2 mod 2PI
-  const prizeCenter = prizeIndex * arc + arc / 2;
-  const fullRotation = spins * 2 * Math.PI;
-  // How much extra do we need beyond full rotations?
-  const landAt = (3 * Math.PI / 2); // = -PI/2 normalized to positive = 270deg
-  const extra = (landAt - (wheelAngle + fullRotation + prizeCenter) % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
+window.doSpin = async function() {
+  if (spinning||!spinPayload) return;
+
+  // Double-check token is still valid
+  const tokenSnap = await getDoc(doc(db,'tokens',spinPayload.t));
+  if (!tokenSnap.exists()||tokenSnap.data().used||tokenSnap.data().cancelled) {
+    showState('stateUsed'); return;
+  }
+
+  spinning = true;
+  document.getElementById('spinBtn').disabled = true;
+
+  const prizeIndex = WEIGHTED_POOL[Math.floor(Math.random()*WEIGHTED_POOL.length)];
+  const prize = PRIZES[prizeIndex];
+  const arc = (2*Math.PI)/PRIZES.length;
+  const spins = 5 + Math.random()*3;
+  const prizeCenter = prizeIndex*arc + arc/2;
+  const fullRotation = spins*2*Math.PI;
+  const landAt = (3*Math.PI/2);
+  const extra = (landAt - (wheelAngle+fullRotation+prizeCenter)%(2*Math.PI) + 2*Math.PI)%(2*Math.PI);
   const target = wheelAngle + fullRotation + extra;
-  const duration=4200,start=performance.now(),startAngle=wheelAngle;
+  const duration = 4200, start = performance.now(), startAngle = wheelAngle;
 
-  function ease(t){return 1-Math.pow(1-t,4);}
-  function frame(now){
-    const t=Math.min((now-start)/duration,1);
-    const cur=startAngle+(target-startAngle)*ease(t);
-    wheelAngle=cur%(2*Math.PI);
+  function ease(t){ return 1-Math.pow(1-t,4); }
+
+  function frame(now) {
+    const t = Math.min((now-start)/duration,1);
+    const cur = startAngle+(target-startAngle)*ease(t);
+    wheelAngle = cur%(2*Math.PI);
     drawWheel(cur);
-    if(t<1){requestAnimationFrame(frame);return;}
+    if (t<1) { requestAnimationFrame(frame); return; }
 
-    spinning=false;
-    markSpun(spinPayload.t);
-    syncBack(spinPayload.id,spinPayload.name,prize.pts,spinPayload.t);
+    // Save to Firestore
+    Promise.all([
+      updateDoc(doc(db,'tokens',spinPayload.t), {
+        used: true, usedAt: serverTimestamp(), ptsAwarded: prize.pts
+      }),
+      updateDoc(doc(db,'clients',spinPayload.id), {
+        points: increment(prize.pts)
+      }),
+      addDoc(collection(db,'history'), {
+        clientId: spinPayload.id,
+        clientName: spinPayload.name,
+        pts: prize.pts,
+        type: 'qrspin',
+        ts: serverTimestamp()
+      })
+    ]).catch(console.error);
 
-    const newTotal=(spinPayload.pts||0)+prize.pts;
-    document.getElementById('resultPts').textContent='+'+prize.pts;
-    document.getElementById('resultTotal').textContent=newTotal.toLocaleString();
+    spinning = false;
+    const newTotal = (spinPayload.pts||0) + prize.pts;
+    document.getElementById('resultPts').textContent = '+'+prize.pts;
+    document.getElementById('resultTotal').textContent = newTotal.toLocaleString();
     document.getElementById('resultBox').classList.add('show');
-    document.getElementById('spinBtn').style.display='none';
-    document.getElementById('doneMsgHidden').style.display='block';
+    document.getElementById('spinBtn').style.display = 'none';
+    document.getElementById('doneMsgHidden').style.display = 'block';
     launchConfetti();
   }
   requestAnimationFrame(frame);
-}
+};
 
-function launchConfetti(){
-  const colors=['#c8a96e','#ffd700','#5ce0a0','#339af0','#cc5de8','#ff6b6b'];
+function launchConfetti() {
+  const colors = ['#c8a96e','#ffd700','#5ce0a0','#339af0','#cc5de8','#ff6b6b'];
   for(let i=0;i<40;i++){
     setTimeout(()=>{
-      const el=document.createElement('div');
-      el.className='particle';
-      el.style.cssText='left:'+Math.random()*100+'vw;top:'+(Math.random()*20-10)+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(1.5+Math.random()*1.5)+'s;animation-delay:'+(Math.random()*.5)+'s;transform:scale('+(0.5+Math.random())+')';
+      const el = document.createElement('div');
+      el.className = 'particle';
+      el.style.cssText = 'left:'+Math.random()*100+'vw;top:'+(Math.random()*20-10)+'px;background:'+colors[Math.floor(Math.random()*colors.length)]+';animation-duration:'+(1.5+Math.random()*1.5)+'s;animation-delay:'+(Math.random()*.5)+'s;transform:scale('+(0.5+Math.random())+')';
       document.body.appendChild(el);
       setTimeout(()=>el.remove(),3000);
     },i*30);
