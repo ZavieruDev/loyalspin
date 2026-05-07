@@ -6,18 +6,36 @@
 <title>LoyalSpin — Mis Puntos</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a26;--border:#2a2a3a;--accent:#c8a96e;--accent2:#e8c98e;--text:#f0ede8;--muted:#7a7890}
+:root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a26;--border:#2a2a3a;--accent:#c8a96e;--accent2:#e8c98e;--text:#f0ede8;--muted:#7a7890;--danger:#e05c5c}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden;position:relative}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
-.orb1{width:500px;height:500px;top:-120px;left:-120px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);animation:d 12s ease-in-out infinite}
-.orb2{width:380px;height:380px;bottom:-80px;right:-80px;background:radial-gradient(circle,rgba(80,60,160,.06) 0%,transparent 70%);animation:d 9s ease-in-out infinite reverse}
-@keyframes d{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
-.card{position:relative;z-index:1;width:100%;max-width:380px;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:44px 36px;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.5);animation:up .6s ease}
-@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.brand{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
-.brand span{color:var(--accent)}
+.orb1{width:500px;height:500px;top:-120px;left:-120px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);animation:drift 12s ease-in-out infinite}
+.orb2{width:380px;height:380px;bottom:-80px;right:-80px;background:radial-gradient(circle,rgba(80,60,160,.06) 0%,transparent 70%);animation:drift 9s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
+
+.login-wrap{position:relative;z-index:1;width:100%;max-width:380px;animation:up .5s ease}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.login-logo{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;text-align:center;margin-bottom:6px}
+.login-logo span{color:var(--accent)}
+.login-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:32px}
+.login-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:36px 32px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field input{width:100%;padding:13px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.field input:focus{border-color:var(--accent)}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#1a1400;font-weight:700;font-size:15px;font-family:'Syne',sans-serif;cursor:pointer;transition:all .2s;margin-top:4px}
+.btn-login:hover{opacity:.9;transform:translateY(-1px)}
+.btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.login-error{color:var(--danger);font-size:13px;margin-top:12px;text-align:center;display:none}
+.login-hint{font-size:12px;color:var(--muted);text-align:center;margin-top:16px;line-height:1.6}
+
+.card{position:relative;z-index:1;width:100%;max-width:380px;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:44px 36px;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.5);display:none;animation:up .6s ease}
+.brand{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;display:flex;align-items:center;justify-content:space-between}
+.brand-name span{color:var(--accent)}
+.btn-logout{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:11px;padding:4px 10px;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif}
+.btn-logout:hover{border-color:var(--danger);color:var(--danger)}
 .avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7a4e2d);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff;margin:0 auto 16px;box-shadow:0 8px 28px rgba(200,169,110,.3)}
 .name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.4px;margin-bottom:4px}
 .cid{font-size:13px;color:var(--muted);margin-bottom:32px}
@@ -38,24 +56,53 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .prog-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
 .prog-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width 1.2s ease}
 .footer{font-size:11px;color:#3a3850;text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);line-height:1.6}
-.loader{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.err-icon{font-size:48px;margin-bottom:14px}
-.err-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:8px}
-.err-msg{color:var(--muted);font-size:14px;line-height:1.7}
 </style>
 </head>
 <body>
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
+
+<div class="login-wrap" id="loginWrap">
+  <div class="login-logo">Loyal<span>Spin</span></div>
+  <div class="login-sub">Consulta tus puntos</div>
+  <div class="login-box">
+    <div class="field">
+      <label>Teléfono</label>
+      <input type="tel" id="loginPhone" placeholder="+57 300 111 2233" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Código de cliente</label>
+      <input type="text" id="loginId" placeholder="CL001" autocomplete="off">
+    </div>
+    <button class="btn-login" id="loginBtn" onclick="doLogin()">Ver mis puntos</button>
+    <div class="login-error" id="loginError">Teléfono o código incorrecto</div>
+    <div class="login-hint">Tu código de cliente te lo proporciona el negocio</div>
+  </div>
+</div>
+
 <div class="card" id="card">
-  <div class="loader"></div>
-  <p style="color:var(--muted);font-size:14px">Cargando…</p>
+  <div class="brand">
+    <div class="brand-name">Loyal<span>Spin</span> · mis puntos</div>
+    <button class="btn-logout" onclick="doLogout()">Salir</button>
+  </div>
+  <div class="avatar" id="cardAvatar"></div>
+  <div class="name" id="cardName"></div>
+  <div class="cid" id="cardCid"></div>
+  <div class="pts-box">
+    <div class="pts-lbl">Puntos acumulados</div>
+    <div class="pts-num" id="cnt">0</div>
+    <div class="pts-word">puntos</div>
+    <div class="stars" id="cardStars"></div>
+    <div id="cardTier"></div>
+    <div id="cardProg"></div>
+  </div>
+  <div class="footer">Vista de solo lectura · Consulta con el negocio para más información</div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCdXUX2_ydiPcj51ciV9YrSczAcs6m2F30",
@@ -82,60 +129,98 @@ function getNext(p){
   if(p<2000)return{next:2000,label:'Platino'};
   return null;
 }
-function stars(p){
+function starsHTML(p){
   const n=p>=2000?5:p>=1000?4:p>=500?3:p>=200?2:1;
   return Array.from({length:5},(_,i)=>`<span class="star">${i<n?'⭐':'☆'}</span>`).join('');
 }
+function normalizePhone(p){ return p.replace(/[\s\-().+]/g,''); }
 
-async function load() {
-  const id = new URLSearchParams(window.location.search).get('id');
-  const card = document.getElementById('card');
+window.doLogin = async function() {
+  const phone = document.getElementById('loginPhone').value.trim();
+  const id = document.getElementById('loginId').value.trim().toUpperCase();
+  const btn = document.getElementById('loginBtn');
+  const err = document.getElementById('loginError');
 
-  if (!id) {
-    card.innerHTML='<div class="err-icon">❓</div><div class="err-title">Sin ID</div><div class="err-msg">Escanea el QR correcto.</div>';
-    return;
-  }
+  if (!phone||!id) { showError('Completa ambos campos'); return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Buscando…';
+  err.style.display = 'none';
 
   try {
-    const snap = await getDoc(doc(db,'clients',id.toUpperCase()));
-    if (!snap.exists()) {
-      card.innerHTML=`<div class="err-icon">❓</div><div class="err-title">No encontrado</div><div class="err-msg">ID "${id}" no existe. Consulta con el negocio.</div>`;
-      return;
-    }
-    const c = snap.data();
-    const p = c.points||0, tier=getTier(p), next=getNext(p), prog=next?Math.min((p/next.next)*100,100):100;
+    const snap = await getDocs(query(collection(db,'clients'), where('__name__','==',id)));
+    if (snap.empty) { showError('Teléfono o código incorrecto'); reset(); return; }
 
-    card.innerHTML=`
-      <div class="brand">Loyal<span>Spin</span> · mis puntos</div>
-      <div class="avatar">${initials(c.name)}</div>
-      <div class="name">${c.name}</div>
-      <div class="cid">ID: ${snap.id}${c.phone?' · '+c.phone:''}</div>
-      <div class="pts-box">
-        <div class="pts-lbl">Puntos acumulados</div>
-        <div class="pts-num" id="cnt">0</div>
-        <div class="pts-word">puntos</div>
-        <div class="stars">${stars(p)}</div>
-        <span class="tier ${tier.cls}">${tier.e} Nivel ${tier.name}</span>
-        ${next?`<div class="prog-row"><span>${p.toLocaleString()} pts</span><span>${next.next.toLocaleString()} → ${next.label}</span></div><div class="prog-bar"><div class="prog-fill" id="pf"></div></div>`:'<div style="margin-top:10px;font-size:12px;color:var(--accent)">🏆 Nivel máximo</div>'}
-      </div>
-      <div class="footer">Vista de solo lectura · Consulta con el negocio para más información</div>
-    `;
+    const c = snap.docs[0].data();
+    const storedPhone = normalizePhone(c.phone||'');
+    const inputPhone = normalizePhone(phone);
 
-    const dur=1200, start=performance.now();
-    (function tick(now){
-      const t=Math.min((now-start)/dur,1), e=1-Math.pow(1-t,3);
-      document.getElementById('cnt').textContent=Math.floor(e*p).toLocaleString();
-      if(t<1)requestAnimationFrame(tick);
-      else document.getElementById('cnt').textContent=p.toLocaleString();
-    })(performance.now());
-    setTimeout(()=>{ const pf=document.getElementById('pf'); if(pf)pf.style.width=prog+'%'; },300);
+    if (!storedPhone || storedPhone !== inputPhone) { showError('Teléfono o código incorrecto'); reset(); return; }
+
+    sessionStorage.setItem('ls_client', JSON.stringify({id, ...c}));
+    showCard({id, ...c});
 
   } catch(e) {
-    card.innerHTML='<div class="err-icon">⚠️</div><div class="err-title">Error de conexión</div><div class="err-msg">No se pudo conectar. Revisa tu internet e intenta de nuevo.</div>';
+    showError('Error de conexión. Intenta de nuevo.');
+    reset();
   }
+};
+
+function reset() {
+  document.getElementById('loginBtn').disabled = false;
+  document.getElementById('loginBtn').textContent = 'Ver mis puntos';
 }
 
-load();
+function showError(msg) {
+  const el = document.getElementById('loginError');
+  el.textContent = msg;
+  el.style.display = 'block';
+  reset();
+}
+
+function showCard(c) {
+  document.getElementById('loginWrap').style.display = 'none';
+  const card = document.getElementById('card');
+  card.style.display = 'block';
+
+  const p = c.points||0;
+  const tier = getTier(p);
+  const next = getNext(p);
+  const prog = next ? Math.min((p/next.next)*100,100) : 100;
+
+  document.getElementById('cardAvatar').textContent = initials(c.name);
+  document.getElementById('cardName').textContent = c.name;
+  document.getElementById('cardCid').textContent = `ID: ${c.id}${c.phone?' · '+c.phone:''}`;
+  document.getElementById('cardStars').innerHTML = starsHTML(p);
+  document.getElementById('cardTier').innerHTML = `<span class="tier ${tier.cls}">${tier.e} Nivel ${tier.name}</span>`;
+  document.getElementById('cardProg').innerHTML = next
+    ? `<div class="prog-row"><span>${p.toLocaleString()} pts</span><span>${next.next.toLocaleString()} → ${next.label}</span></div><div class="prog-bar"><div class="prog-fill" id="pf"></div></div>`
+    : '<div style="margin-top:10px;font-size:12px;color:var(--accent)">🏆 Nivel máximo</div>';
+
+  const dur=1200, start=performance.now();
+  (function tick(now){
+    const t=Math.min((now-start)/dur,1), e=1-Math.pow(1-t,3);
+    document.getElementById('cnt').textContent=Math.floor(e*p).toLocaleString();
+    if(t<1)requestAnimationFrame(tick);
+    else document.getElementById('cnt').textContent=p.toLocaleString();
+  })(performance.now());
+  setTimeout(()=>{ const pf=document.getElementById('pf'); if(pf)pf.style.width=prog+'%'; },300);
+}
+
+window.doLogout = function() {
+  sessionStorage.removeItem('ls_client');
+  document.getElementById('card').style.display = 'none';
+  document.getElementById('loginWrap').style.display = 'block';
+  document.getElementById('loginPhone').value = '';
+  document.getElementById('loginId').value = '';
+  reset();
+};
+
+const saved = sessionStorage.getItem('ls_client');
+if (saved) { try { showCard(JSON.parse(saved)); } catch(e) { sessionStorage.removeItem('ls_client'); } }
+
+document.getElementById('loginId').addEventListener('keydown', e=>{ if(e.key==='Enter') window.doLogin(); });
+document.getElementById('loginPhone').addEventListener('keydown', e=>{ if(e.key==='Enter') window.doLogin(); });
 </script>
 </body>
 </html>
