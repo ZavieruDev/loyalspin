@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoyalSpin — ¡Gira tu ruleta!</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>NekoRuleta — ¡Gira tu ruleta!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a26;--border:#2a2a3a;--accent:#c8a96e;--accent2:#e8c98e;--text:#f0ede8;--muted:#7a7890;--success:#5ce0a0;--danger:#e05c5c}
+:root{--bg:#0d0d12;--surface:#15151e;--surface2:#1e1e2a;--border:#2a2a3d;--accent:#ff6eb4;--accent2:#ff9ed4;--text:#f0ede8;--muted:#7a7a9a;--success:#5ce0a0;--danger:#e05c5c}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;position:relative}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;overflow:hidden;position:relative}
 .bg-orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
-.orb1{width:500px;height:500px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);animation:orbDrift 14s ease-in-out infinite}
+.orb1{width:500px;height:500px;top:-150px;left:-150px;background:radial-gradient(circle,rgba(255,110,180,.07) 0%,transparent 70%);animation:orbDrift 14s ease-in-out infinite}
 .orb2{width:400px;height:400px;bottom:-100px;right:-100px;background:radial-gradient(circle,rgba(80,60,160,.07) 0%,transparent 70%);animation:orbDrift 10s ease-in-out infinite reverse}
 @keyframes orbDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
 .card{position:relative;z-index:1;width:100%;max-width:400px;background:var(--surface);border:1px solid var(--border);border-radius:28px;padding:36px 32px;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.5)}
@@ -21,29 +21,29 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 @keyframes spin{to{transform:rotate(360deg)}}
 .brand{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
 .brand span{color:var(--accent)}
-.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7a4e2d);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#fff;margin:0 auto 14px;box-shadow:0 8px 24px rgba(200,169,110,.3)}
-.client-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;letter-spacing:-.3px}
+.avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c0306a);display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:24px;font-weight:800;color:#fff;margin:0 auto 14px;box-shadow:0 8px 24px rgba(255,110,180,.3)}
+.client-name{font-family:'Fredoka One',cursive;font-size:22px;font-weight:800;margin-bottom:4px;letter-spacing:-.3px}
 .client-pts{color:var(--muted);font-size:14px;margin-bottom:28px}
-.client-pts strong{color:var(--accent);font-family:'Syne',sans-serif;font-size:16px}
+.client-pts strong{color:var(--accent);font-family:'Fredoka One',cursive;font-size:16px}
 .wheel-wrap{position:relative;width:260px;height:260px;margin:0 auto 24px}
-#wheelCanvas{border-radius:50%;display:block;box-shadow:0 0 0 6px var(--surface2),0 0 40px rgba(200,169,110,.15)}
-.wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid var(--accent);filter:drop-shadow(0 3px 6px rgba(200,169,110,.5));z-index:10}
+#wheelCanvas{border-radius:50%;display:block;box-shadow:0 0 0 6px var(--surface2),0 0 40px rgba(255,110,180,.15)}
+.wheel-pointer{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:11px solid transparent;border-right:11px solid transparent;border-top:22px solid var(--accent);filter:drop-shadow(0 3px 6px rgba(255,110,180,.5));z-index:10}
 .wheel-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:var(--bg);border:3px solid var(--accent);z-index:10;display:flex;align-items:center;justify-content:center;font-size:16px}
 .cta-text{font-size:13px;color:var(--muted);margin-bottom:16px}
-.btn-spin{display:block;width:100%;padding:16px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1a1400;font-weight:800;font-size:18px;font-family:'Syne',sans-serif;cursor:pointer;letter-spacing:.04em;transition:all .2s;box-shadow:0 8px 24px rgba(200,169,110,.3)}
-.btn-spin:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(200,169,110,.4)}
+.btn-spin{display:block;width:100%;padding:16px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#1a1400;font-weight:800;font-size:18px;font-family:'Fredoka One',cursive;cursor:pointer;letter-spacing:.04em;transition:all .2s;box-shadow:0 8px 24px rgba(255,110,180,.3)}
+.btn-spin:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(255,110,180,.4)}
 .btn-spin:disabled{opacity:.4;cursor:not-allowed;transform:none}
-.result-box{margin:20px 0;background:linear-gradient(135deg,rgba(200,169,110,.12),rgba(200,169,110,.04));border:1px solid rgba(200,169,110,.25);border-radius:18px;padding:28px 20px;display:none}
+.result-box{margin:20px 0;background:linear-gradient(135deg,rgba(255,110,180,.12),rgba(255,110,180,.04));border:1px solid rgba(255,110,180,.25);border-radius:18px;padding:28px 20px;display:none}
 .result-box.show{display:block;animation:popIn .5s cubic-bezier(.175,.885,.32,1.275) both}
 @keyframes popIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
 .result-label{font-size:13px;color:var(--muted);margin-bottom:8px}
-.result-pts{font-family:'Syne',sans-serif;font-size:64px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-2px}
+.result-pts{font-family:'Fredoka One',cursive;font-size:64px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-2px}
 .result-pts-word{font-size:16px;color:var(--muted);margin-top:6px}
 .result-total{font-size:14px;color:var(--text);margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
-.result-total strong{color:var(--accent);font-family:'Syne',sans-serif;font-size:18px}
+.result-total strong{color:var(--accent);font-family:'Fredoka One',cursive;font-size:18px}
 .done-msg{font-size:13px;color:var(--muted);margin-top:16px;padding:12px 16px;background:rgba(122,120,144,.08);border-radius:10px;line-height:1.6}
 .error-icon{font-size:56px;margin-bottom:16px}
-.error-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:10px}
+.error-title{font-family:'Fredoka One',cursive;font-size:22px;font-weight:800;margin-bottom:10px}
 .error-msg{color:var(--muted);font-size:14px;line-height:1.7}
 .particle{position:fixed;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:100;animation:fall 2s ease-in forwards}
 @keyframes fall{0%{opacity:1;transform:translateY(0) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
@@ -60,7 +60,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   </div>
 
   <div class="state" id="stateSpin">
-    <div class="brand">Loyal<span>Spin</span> · tu premio</div>
+    <div class="brand">Neko<span>Ruleta</span> · tu premio</div>
     <div class="avatar" id="spinAvatar">?</div>
     <div class="client-name" id="spinName">–</div>
     <div class="client-pts">Tienes <strong id="spinCurrentPts">0</strong> puntos</div>

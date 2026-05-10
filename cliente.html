@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LoyalSpin — Mis Puntos</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>NekoRuleta — Mis Puntos</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0f;--surface:#111118;--surface2:#1a1a26;--border:#2a2a3a;--accent:#c8a96e;--accent2:#e8c98e;--text:#f0ede8;--muted:#7a7890;--danger:#e05c5c}
+:root{--bg:#0d0d12;--surface:#15151e;--surface2:#1e1e2a;--border:#2a2a3d;--accent:#ff6eb4;--accent2:#ff9ed4;--text:#f0ede8;--muted:#7a7890;--danger:#ff5e7a}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;position:relative;overflow:hidden}
 .orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0}
-.orb1{width:500px;height:500px;top:-120px;left:-120px;background:radial-gradient(circle,rgba(200,169,110,.07) 0%,transparent 70%);animation:drift 12s ease-in-out infinite}
+.orb1{width:500px;height:500px;top:-120px;left:-120px;background:radial-gradient(circle,rgba(255,110,180,.07) 0%,transparent 70%);animation:drift 12s ease-in-out infinite}
 .orb2{width:380px;height:380px;bottom:-80px;right:-80px;background:radial-gradient(circle,rgba(80,60,160,.06) 0%,transparent 70%);animation:drift 9s ease-in-out infinite reverse}
 @keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,20px)}}
 
 .login-wrap{position:relative;z-index:1;width:100%;max-width:380px;animation:up .5s ease}
 @keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.login-logo{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;text-align:center;margin-bottom:6px}
+.login-logo{font-family:'Fredoka One',cursive;font-size:26px;font-weight:800;text-align:center;margin-bottom:6px}
 .login-logo span{color:var(--accent)}
 .login-sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:32px}
 .login-box{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:36px 32px;box-shadow:0 40px 80px rgba(0,0,0,.5)}
 .field{margin-bottom:18px}
 .field label{display:block;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.field input{width:100%;padding:13px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s}
+.field input{width:100%;padding:13px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:15px;font-family:'Nunito',sans-serif;outline:none;transition:border-color .2s}
 .field input:focus{border-color:var(--accent)}
-.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#1a1400;font-weight:700;font-size:15px;font-family:'Syne',sans-serif;cursor:pointer;transition:all .2s;margin-top:4px}
+.btn-login{width:100%;padding:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#1a1400;font-weight:700;font-size:15px;font-family:'Fredoka One',cursive;cursor:pointer;transition:all .2s;margin-top:4px}
 .btn-login:hover{opacity:.9;transform:translateY(-1px)}
 .btn-login:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .login-error{color:var(--danger);font-size:13px;margin-top:12px;text-align:center;display:none}
@@ -36,14 +36,14 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .brand-name span{color:var(--accent)}
 .btn-logout{background:none;border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:11px;padding:4px 10px;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif}
 .btn-logout:hover{border-color:var(--danger);color:var(--danger)}
-.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#7a4e2d);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#fff;margin:0 auto 16px;box-shadow:0 8px 28px rgba(200,169,110,.3)}
-.name{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;letter-spacing:-.4px;margin-bottom:4px}
+.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c0306a);display:flex;align-items:center;justify-content:center;font-family:'Fredoka One',cursive;font-size:28px;font-weight:800;color:#fff;margin:0 auto 16px;box-shadow:0 8px 28px rgba(255,110,180,.3)}
+.name{font-family:'Fredoka One',cursive;font-size:26px;font-weight:800;letter-spacing:-.4px;margin-bottom:4px}
 .cid{font-size:13px;color:var(--muted);margin-bottom:32px}
 .pts-box{background:var(--surface2);border:1px solid var(--border);border-radius:18px;padding:28px 20px;margin-bottom:20px;position:relative;overflow:hidden}
 .pts-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1.5px;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:sh 3s ease-in-out infinite}
 @keyframes sh{0%,100%{opacity:.3}50%{opacity:.9}}
 .pts-lbl{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:10px}
-.pts-num{font-family:'Syne',sans-serif;font-size:66px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-2px}
+.pts-num{font-family:'Fredoka One',cursive;font-size:66px;font-weight:800;color:var(--accent);line-height:1;letter-spacing:-2px}
 .pts-word{font-size:16px;color:var(--muted);margin-top:6px}
 .stars{display:flex;justify-content:center;gap:5px;margin:12px 0 0}
 .star{font-size:18px}
@@ -64,7 +64,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 <div class="orb orb2"></div>
 
 <div class="login-wrap" id="loginWrap">
-  <div class="login-logo">Loyal<span>Spin</span></div>
+  <div class="login-logo">Neko<span>Ruleta</span></div>
   <div class="login-sub">Consulta tus puntos</div>
   <div class="login-box">
     <div class="field">
@@ -83,7 +83,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 
 <div class="card" id="card">
   <div class="brand">
-    <div class="brand-name">Loyal<span>Spin</span> · mis puntos</div>
+    <div class="brand-name">Neko<span>Ruleta</span> · mis puntos</div>
     <button class="btn-logout" onclick="doLogout()">Salir</button>
   </div>
   <div class="avatar" id="cardAvatar"></div>
