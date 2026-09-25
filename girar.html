@@ -22,7 +22,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 .wheel-wrap{position:relative;width:270px;height:270px;margin:0 auto 26px}
 .pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--pink);z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
 .wheel{width:100%;height:100%;border-radius:50%;position:relative;border:8px solid var(--surface);box-shadow:0 0 0 2px var(--border),0 10px 40px rgba(0,0,0,.5);transition:transform 4.2s cubic-bezier(.17,.67,.14,1)}
-.seg-label{position:absolute;top:50%;left:50%;width:110px;text-align:center;font-family:'Fredoka One',cursive;font-size:19px;color:rgba(0,0,0,.55);transform-origin:0 0;pointer-events:none}
+.seg-label{position:absolute;top:50%;left:50%;width:100px;text-align:center;font-family:'Fredoka One',cursive;font-size:17px;color:rgba(0,0,0,.55);transform-origin:0 0;pointer-events:none}
 .hub{position:absolute;top:50%;left:50%;width:50px;height:50px;background:#12121a;border:3px solid var(--pink);border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;font-size:22px;z-index:4}
 
 .spins-line{color:var(--muted);font-size:14px;font-weight:600;margin-bottom:18px}
@@ -74,14 +74,16 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Premios de la ruleta (puntos LoyalSpin)
+// Premios de la ruleta (8 gajos, igual al diseño original — 100 y 200 se repiten para llenar los 8 espacios)
 const PRIZES = [
-  { label:'20',   pts:20,   color:'#a855f7', weight:30 },
-  { label:'50',   pts:50,   color:'#3b82f6', weight:25 },
-  { label:'100',  pts:100,  color:'#22c55e', weight:20 },
-  { label:'200',  pts:200,  color:'#eab308', weight:14 },
-  { label:'500',  pts:500,  color:'#f97316', weight:8  },
-  { label:'1000', pts:1000, color:'#ef4444', weight:3  }
+  { label:'1000', pts:1000, color:'#ff6b35' },
+  { label:'200',  pts:200,  color:'#ffa64d' },
+  { label:'50',   pts:50,   color:'#ff5e7a' },
+  { label:'100',  pts:100,  color:'#ff8c42' },
+  { label:'200',  pts:200,  color:'#fbbf24' },
+  { label:'100',  pts:100,  color:'#4ade80' },
+  { label:'500',  pts:500,  color:'#4d94ff' },
+  { label:'20',   pts:20,   color:'#a855f7' }
 ];
 const SEG = 360 / PRIZES.length;
 
@@ -101,10 +103,7 @@ function initials(name) {
 }
 
 function pickPrize() {
-  const totalW = PRIZES.reduce((s,p)=>s+p.weight,0);
-  let r = Math.random()*totalW;
-  for (let i=0;i<PRIZES.length;i++) { r -= PRIZES[i].weight; if (r<=0) return i; }
-  return PRIZES.length-1;
+  return Math.floor(Math.random()*PRIZES.length);
 }
 
 function buildWheelGradient() {
@@ -116,7 +115,7 @@ function buildWheelGradient() {
 function buildLabels() {
   return PRIZES.map((p,i)=>{
     const angle = i*SEG + SEG/2;
-    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(66px,-10px)">${p.label}</div>`;
+    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(60px,-9px)">${p.label}</div>`;
   }).join('');
 }
 
