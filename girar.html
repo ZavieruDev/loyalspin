@@ -22,7 +22,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 .wheel-wrap{position:relative;width:270px;height:270px;margin:0 auto 26px}
 .pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--pink);z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
 .wheel{width:100%;height:100%;border-radius:50%;position:relative;border:8px solid var(--surface);box-shadow:0 0 0 2px var(--border),0 10px 40px rgba(0,0,0,.5);transition:transform 4.2s cubic-bezier(.17,.67,.14,1)}
-.seg-label{position:absolute;top:50%;left:50%;width:100px;text-align:center;font-family:'Fredoka One',cursive;font-size:17px;color:rgba(0,0,0,.55);transform-origin:0 0;pointer-events:none}
+.seg-label{position:absolute;top:50%;left:50%;width:100px;text-align:center;font-family:'Fredoka One',cursive;font-size:17px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.3);transform-origin:0 0;pointer-events:none}
 .hub{position:absolute;top:50%;left:50%;width:50px;height:50px;background:#12121a;border:3px solid var(--pink);border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;font-size:22px;z-index:4}
 
 .spins-line{color:var(--muted);font-size:14px;font-weight:600;margin-bottom:18px}
@@ -100,10 +100,6 @@ function stateScreen(icon, title, sub) {
 function initials(name) {
   const parts = (name||'?').trim().split(/\s+/);
   return ((parts[0]?.[0]||'') + (parts[1]?.[0]||'')).toUpperCase();
-}
-
-function pickPrize() {
-  return Math.floor(Math.random()*PRIZES.length);
 }
 
 function buildWheelGradient() {
@@ -217,13 +213,18 @@ async function doSpin(payload, spinsTotal) {
     return;
   }
 
-  const prizeIdx = pickPrize();
-  const prize = PRIZES[prizeIdx];
-  const segCenter = prizeIdx*SEG + SEG/2;
-  const landingAngle = (360 - segCenter) % 360;
+  // Elegimos primero el ángulo final del giro (lo que se ve), y de ahí
+  // derivamos qué premio corresponde exactamente a donde queda el puntero.
+  // Así el número que se ve SIEMPRE coincide con el premio otorgado.
   const baseline = currentRotation - (currentRotation % 360);
-  const finalRotation = baseline + 360*6 + landingAngle + (Math.random()*(SEG*0.5)-(SEG*0.25));
+  const randomAngle = Math.random() * 360;
+  const finalRotation = baseline + 360*6 + randomAngle;
   currentRotation = finalRotation;
+
+  // Ángulo original (antes de rotar) que queda justo bajo el puntero (arriba, 0°)
+  const angleUnderPointer = (360 - (randomAngle % 360)) % 360;
+  const prizeIdx = Math.floor(angleUnderPointer / SEG) % PRIZES.length;
+  const prize = PRIZES[prizeIdx];
 
   const wheel = document.getElementById('wheel');
   wheel.style.transform = `rotate(${finalRotation}deg)`;
