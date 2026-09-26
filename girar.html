@@ -22,7 +22,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);min-
 .wheel-wrap{position:relative;width:270px;height:270px;margin:0 auto 26px}
 .pointer{position:absolute;top:-8px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;border-top:22px solid var(--pink);z-index:5;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4))}
 .wheel{width:100%;height:100%;border-radius:50%;position:relative;border:8px solid var(--surface);box-shadow:0 0 0 2px var(--border),0 10px 40px rgba(0,0,0,.5);transition:transform 4.2s cubic-bezier(.17,.67,.14,1)}
-.seg-label{position:absolute;top:50%;left:50%;width:100px;text-align:center;font-family:'Fredoka One',cursive;font-size:17px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.3);transform-origin:0 0;pointer-events:none}
+.seg-label{position:absolute;top:50%;left:50%;width:100px;text-align:center;font-family:'Fredoka One',cursive;font-size:15px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.5),0 0 2px rgba(0,0,0,.3);transform-origin:0 0;pointer-events:none}
 .hub{position:absolute;top:50%;left:50%;width:50px;height:50px;background:#12121a;border:3px solid var(--pink);border-radius:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;font-size:22px;z-index:4}
 
 .spins-line{color:var(--muted);font-size:14px;font-weight:600;margin-bottom:18px}
@@ -74,18 +74,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Premios de la ruleta (8 gajos, igual al diseño original — 100 y 200 se repiten para llenar los 8 espacios)
-const PRIZES = [
-  { label:'1000', pts:1000, color:'#ff6b35' },
-  { label:'200',  pts:200,  color:'#ffa64d' },
-  { label:'50',   pts:50,   color:'#ff5e7a' },
-  { label:'100',  pts:100,  color:'#ff8c42' },
-  { label:'200',  pts:200,  color:'#fbbf24' },
-  { label:'100',  pts:100,  color:'#4ade80' },
-  { label:'500',  pts:500,  color:'#4d94ff' },
-  { label:'20',   pts:20,   color:'#a855f7' }
+// Premios de la ruleta — el TAMAÑO de cada gajo es proporcional a su
+// probabilidad real (así el gajo donde cae el puntero y el premio
+// otorgado son siempre la misma cosa, no dos cálculos separados).
+const PRIZE_DEFS = [
+  { label:'50',   pts:50,   color:'#ff6eb4', pct:50 },
+  { label:'100',  pts:100,  color:'#ff8c42', pct:25 },
+  { label:'200',  pts:200,  color:'#fbbf24', pct:10 },
+  { label:'500',  pts:500,  color:'#4d94ff', pct:9  },
+  { label:'1000', pts:1000, color:'#a855f7', pct:6  }
 ];
-const SEG = 360 / PRIZES.length;
+let startAcc = 0;
+const PRIZES = PRIZE_DEFS.map(p => {
+  const size = p.pct / 100 * 360;
+  const seg = { ...p, start: startAcc, end: startAcc + size };
+  startAcc += size;
+  return seg;
+});
 
 function card(html) { document.getElementById('card').innerHTML = html; }
 
@@ -103,16 +108,24 @@ function initials(name) {
 }
 
 function buildWheelGradient() {
-  let stops = [];
-  PRIZES.forEach((p,i)=> stops.push(`${p.color} ${i*SEG}deg ${(i+1)*SEG}deg`));
+  const stops = PRIZES.map(p => `${p.color} ${p.start}deg ${p.end}deg`);
   return `conic-gradient(${stops.join(',')})`;
 }
 
 function buildLabels() {
-  return PRIZES.map((p,i)=>{
-    const angle = i*SEG + SEG/2;
-    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(60px,-9px)">${p.label}</div>`;
+  return PRIZES.map(p=>{
+    const angle = (p.start + p.end) / 2;
+    // translate() se aplica ANTES que rotate(): dejamos el texto centrado
+    // justo arriba del centro de la rueda (-mitad del ancho, -radio) y
+    // luego rotate() lo lleva exactamente al mismo ángulo que usa el
+    // conic-gradient (0° = arriba), garantizando que texto y color calcen.
+    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(-50px,-64px)">${p.label}</div>`;
   }).join('');
+}
+
+function prizeAtAngle(angleFromTop) {
+  const a = ((angleFromTop % 360) + 360) % 360;
+  return PRIZES.find(p => a >= p.start && a < p.end) || PRIZES[PRIZES.length-1];
 }
 
 // ══ Parse token from URL ══
@@ -223,8 +236,7 @@ async function doSpin(payload, spinsTotal) {
 
   // Ángulo original (antes de rotar) que queda justo bajo el puntero (arriba, 0°)
   const angleUnderPointer = (360 - (randomAngle % 360)) % 360;
-  const prizeIdx = Math.floor(angleUnderPointer / SEG) % PRIZES.length;
-  const prize = PRIZES[prizeIdx];
+  const prize = prizeAtAngle(angleUnderPointer);
 
   const wheel = document.getElementById('wheel');
   wheel.style.transform = `rotate(${finalRotation}deg)`;
