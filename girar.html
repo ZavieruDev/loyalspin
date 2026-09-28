@@ -111,11 +111,10 @@ function buildWheelGradient() {
 function buildLabels() {
   return PRIZES.map(p=>{
     const angle = (p.start + p.end) / 2;
-    // translate() se aplica ANTES que rotate(): dejamos el texto centrado
-    // justo arriba del centro de la rueda (-mitad del ancho, -radio) y
-    // luego rotate() lo lleva exactamente al mismo ángulo que usa el
-    // conic-gradient (0° = arriba), garantizando que texto y color calcen.
-    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(-24px,-64px)">${p.label}</div>`;
+    // El div externo posiciona el gajo (mismo ángulo que el conic-gradient).
+    // El span interno gira 90° extra para que el número quede "a lo largo"
+    // (radial, de adentro hacia afuera) en vez de "a lo ancho".
+    return `<div class="seg-label" style="transform:rotate(${angle}deg) translate(-24px,-64px)"><span style="display:block;transform:rotate(90deg)">${p.label}</span></div>`;
   }).join('');
 }
 
